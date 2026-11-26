@@ -1,0 +1,602 @@
+{
+  "min_date": "2009-12-01",
+  "max_date": "2011-12-09",
+  "as_of": "2011-12-09",
+  "latest_complete_week": "2011-11-28",
+  "weeks": [
+    {
+      "week": "2009-11-30",
+      "complete": false,
+      "trading_days": 6
+    },
+    {
+      "week": "2009-12-07",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2009-12-14",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2009-12-21",
+      "complete": false,
+      "trading_days": 3
+    },
+    {
+      "week": "2010-01-04",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-01-11",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-01-18",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-01-25",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-02-01",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-02-08",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-02-15",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-02-22",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-03-01",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-03-08",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-03-15",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-03-22",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-03-29",
+      "complete": false,
+      "trading_days": 4
+    },
+    {
+      "week": "2010-04-05",
+      "complete": true,
+      "trading_days": 5
+    },
+    {
+      "week": "2010-04-12",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-04-19",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-04-26",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-05-03",
+      "complete": true,
+      "trading_days": 5
+    },
+    {
+      "week": "2010-05-10",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-05-17",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-05-24",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-05-31",
+      "complete": true,
+      "trading_days": 5
+    },
+    {
+      "week": "2010-06-07",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-06-14",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-06-21",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-06-28",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-07-05",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-07-12",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-07-19",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-07-26",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-08-02",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-08-09",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-08-16",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-08-23",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-08-30",
+      "complete": true,
+      "trading_days": 5
+    },
+    {
+      "week": "2010-09-06",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-09-13",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-09-20",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-09-27",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-10-04",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-10-11",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-10-18",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-10-25",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-11-01",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-11-08",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-11-15",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-11-22",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-11-29",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-12-06",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-12-13",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2010-12-20",
+      "complete": false,
+      "trading_days": 4
+    },
+    {
+      "week": "2011-01-03",
+      "complete": true,
+      "trading_days": 5
+    },
+    {
+      "week": "2011-01-10",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-01-17",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-01-24",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-01-31",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-02-07",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-02-14",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-02-21",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-02-28",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-03-07",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-03-14",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-03-21",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-03-28",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-04-04",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-04-11",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-04-18",
+      "complete": false,
+      "trading_days": 4
+    },
+    {
+      "week": "2011-04-25",
+      "complete": true,
+      "trading_days": 4
+    },
+    {
+      "week": "2011-05-02",
+      "complete": true,
+      "trading_days": 5
+    },
+    {
+      "week": "2011-05-09",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-05-16",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-05-23",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-05-30",
+      "complete": true,
+      "trading_days": 5
+    },
+    {
+      "week": "2011-06-06",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-06-13",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-06-20",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-06-27",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-07-04",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-07-11",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-07-18",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-07-25",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-08-01",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-08-08",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-08-15",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-08-22",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-08-29",
+      "complete": true,
+      "trading_days": 5
+    },
+    {
+      "week": "2011-09-05",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-09-12",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-09-19",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-09-26",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-10-03",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-10-10",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-10-17",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-10-24",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-10-31",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-11-07",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-11-14",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-11-21",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-11-28",
+      "complete": true,
+      "trading_days": 6
+    },
+    {
+      "week": "2011-12-05",
+      "complete": false,
+      "trading_days": 5
+    }
+  ],
+  "countries": [
+    "United Kingdom",
+    "EIRE",
+    "Netherlands",
+    "Germany",
+    "France",
+    "Australia",
+    "Switzerland",
+    "Spain",
+    "Sweden",
+    "Denmark",
+    "Belgium",
+    "Portugal",
+    "Channel Islands",
+    "Japan",
+    "Norway",
+    "Italy",
+    "Finland",
+    "Cyprus",
+    "Austria",
+    "Greece",
+    "Hong Kong",
+    "Singapore",
+    "Israel",
+    "Unspecified",
+    "Poland",
+    "United Arab Emirates",
+    "USA",
+    "Iceland",
+    "Lithuania",
+    "Malta",
+    "Canada",
+    "RSA",
+    "Thailand",
+    "Bahrain",
+    "Lebanon",
+    "Brazil",
+    "Bermuda",
+    "European Community",
+    "Korea",
+    "Czech Republic",
+    "West Indies",
+    "Saudi Arabia",
+    "Nigeria"
+  ],
+  "categories": [
+    "Kitchen and Dining",
+    "Bags",
+    "Storage",
+    "Party",
+    "Candles and Fragrance",
+    "Garden and Outdoor",
+    "Home Decor",
+    "Christmas",
+    "Toys and Games",
+    "Textiles and Soft Furnishings",
+    "Stationery",
+    "Cards and Gift Wrap",
+    "Lighting",
+    "Signs and Wall Art",
+    "Frames and Clocks",
+    "Jewellery and Accessories",
+    "Other",
+    "Bath and Beauty"
+  ],
+  "rows": 1021252,
+  "currency": "GBP",
+  "source": {
+    "name": "Online Retail II",
+    "publisher": "UCI Machine Learning Repository",
+    "doi": "10.24432/C5CG6D",
+    "licence": "CC BY 4.0",
+    "kaggle_mirror": "lakshmi25npathi/online-retail-dataset"
+  }
+}

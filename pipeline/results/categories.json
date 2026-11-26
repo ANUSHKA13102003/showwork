@@ -1,0 +1,127 @@
+{
+  "products": 4737,
+  "categories": [
+    "Christmas",
+    "Candles and Fragrance",
+    "Lighting",
+    "Bags",
+    "Cards and Gift Wrap",
+    "Party",
+    "Kitchen and Dining",
+    "Stationery",
+    "Signs and Wall Art",
+    "Frames and Clocks",
+    "Jewellery and Accessories",
+    "Toys and Games",
+    "Garden and Outdoor",
+    "Textiles and Soft Furnishings",
+    "Bath and Beauty",
+    "Storage",
+    "Home Decor",
+    "Other"
+  ],
+  "stages": [
+    {
+      "stage": "rule",
+      "products": 4302,
+      "share": 0.9082,
+      "cumulative": 0.9082
+    },
+    {
+      "stage": "fuzzy",
+      "products": 9,
+      "share": 0.0019,
+      "cumulative": 0.9101
+    },
+    {
+      "stage": "llm",
+      "products": 426,
+      "share": 0.0899,
+      "cumulative": 1.0
+    },
+    {
+      "stage": "default",
+      "products": 0,
+      "share": 0.0,
+      "cumulative": 1.0
+    }
+  ],
+  "review_queue": 58,
+  "per_category": {
+    "Kitchen and Dining": 843,
+    "Jewellery and Accessories": 453,
+    "Candles and Fragrance": 417,
+    "Home Decor": 377,
+    "Storage": 275,
+    "Stationery": 262,
+    "Cards and Gift Wrap": 261,
+    "Bags": 258,
+    "Christmas": 242,
+    "Garden and Outdoor": 229,
+    "Lighting": 207,
+    "Toys and Games": 182,
+    "Frames and Clocks": 180,
+    "Textiles and Soft Furnishings": 177,
+    "Party": 175,
+    "Signs and Wall Art": 122,
+    "Bath and Beauty": 43,
+    "Other": 34
+  },
+  "llm_consistency_check": {
+    "sampled": 120,
+    "answered": 120,
+    "agreement": 0.65,
+    "examples_of_disagreement": [
+      {
+        "description": "PANTRY HOOK BALLOON WHISK",
+        "rule": "Party",
+        "llm": "Kitchen and Dining"
+      },
+      {
+        "description": "LOVE HEART SOCK HANGER",
+        "rule": "Home Decor",
+        "llm": "Storage"
+      },
+      {
+        "description": "SMALL HEART FLOWERS HOOK",
+        "rule": "Storage",
+        "llm": "Home Decor"
+      },
+      {
+        "description": "HEXAGONAL CRYSTAL PERFUME BOTTLE",
+        "rule": "Kitchen and Dining",
+        "llm": "Bath and Beauty"
+      },
+      {
+        "description": "RECYCLED ACAPULCO MAT LAVENDER",
+        "rule": "Lighting",
+        "llm": "Garden and Outdoor"
+      },
+      {
+        "description": "TUB 24 PINK FLOWER PEGS",
+        "rule": "Storage",
+        "llm": "Home Decor"
+      },
+      {
+        "description": "YELLOW VW BEETLE CERAMIC MONEY BOX",
+        "rule": "Toys and Games",
+        "llm": "Home Decor"
+      },
+      {
+        "description": "NOVELTY BISCUITS CAKE STAND 3 TIER",
+        "rule": "Party",
+        "llm": "Kitchen and Dining"
+      },
+      {
+        "description": "BUTTERFLY CROCHET FOOD COVER",
+        "rule": "Garden and Outdoor",
+        "llm": "Kitchen and Dining"
+      },
+      {
+        "description": "RED STRIPE CERAMIC DRAWER KNOB",
+        "rule": "Storage",
+        "llm": "Home Decor"
+      }
+    ]
+  }
+}

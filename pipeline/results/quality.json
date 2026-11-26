@@ -1,0 +1,52 @@
+{
+  "input_rows": 1067371,
+  "clean_rows": 1021252,
+  "sale_rows": 1003338,
+  "return_rows": 17914,
+  "quarantined_rows": 46119,
+  "quarantine_by_reason": {
+    "SHEET_OVERLAP": 22523,
+    "DUPLICATE_ROW": 11812,
+    "NON_PRODUCT_CODE": 5817,
+    "BAD_DEBT_ADJUSTMENT": 6,
+    "MISSING_DESCRIPTION": 0,
+    "PRICE_NOT_POSITIVE": 5961,
+    "NEGATIVE_QTY_NOT_CANCELLED": 0,
+    "CANCELLED_POSITIVE_QTY": 0,
+    "DATE_OUT_OF_RANGE": 0,
+    "MISSING_COUNTRY": 0
+  },
+  "reason_descriptions": {
+    "SHEET_OVERLAP": "Row repeated across the two source sheets (1 to 9 Dec 2010 appears in both).",
+    "DUPLICATE_ROW": "Exact duplicate of an earlier row.",
+    "NON_PRODUCT_CODE": "Stock code is postage, a fee, a manual adjustment, a test or a gift voucher.",
+    "BAD_DEBT_ADJUSTMENT": "Invoice starting with A: an accounting adjustment, not a sale.",
+    "MISSING_DESCRIPTION": "No product description and no other description for this stock code.",
+    "PRICE_NOT_POSITIVE": "Unit price is zero or negative on a non-cancellation line.",
+    "NEGATIVE_QTY_NOT_CANCELLED": "Negative quantity on an invoice that is not a cancellation (stock write-off).",
+    "CANCELLED_POSITIVE_QTY": "Cancellation invoice with a positive quantity.",
+    "DATE_OUT_OF_RANGE": "Invoice date outside 2009-12-01 to 2011-12-09.",
+    "MISSING_COUNTRY": "No country recorded."
+  },
+  "flags": {
+    "guest_rows": 227089,
+    "guest_share_of_rows": 0.2224,
+    "unspecified_country_rows": 750
+  },
+  "descriptions": {
+    "rows_with_whitespace_or_case_fixed": 244624,
+    "stock_codes_with_several_descriptions": 595,
+    "rows_relabelled_to_canonical_description": 59040,
+    "stock_codes_lowercase_in_source": 3471
+  },
+  "customer_type_rows": {
+    "returning": 648044,
+    "guest": 227089,
+    "new": 146119
+  },
+  "output": {
+    "lines_parquet_rows": 1021252,
+    "min_date": "2009-12-01",
+    "max_date": "2011-12-09"
+  }
+}
