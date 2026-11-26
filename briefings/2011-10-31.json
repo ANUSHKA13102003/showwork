@@ -598,29 +598,32 @@
     }
   ],
   "summary": {
-    "text": "During the week of 2011-10-31, net revenue reached \u00a3288,344, marking a strong week-over-week increase of +23.1% compared to \u00a3234,203 the previous week. This performance also exceeded the prior 4-week average of \u00a3249,454 by +15.6%. Growth was supported by 527 orders, representing a +1.5% change from 519 orders last week and a +10.9% rise against the 4-week average of 475. Average order value climbed to \u00a3555.50, up +18.8% week-over-week and +1.4% versus the 4-week average of \u00a3547.85. The primary category driver was Kitchen and Dining, while the United Kingdom led as the top country driver, and returning customers were the leading customer type driver.",
+    "text": "During the week of 2011-10-31, net revenue reached \u00a3288,344, marking a strong +23.1% increase compared to the previous week's \u00a3234,203 and performing +15.6% higher than the prior 4-week average of \u00a3249,454. Growth was driven by 527 orders, which were up +1.5% week-over-week and +10.9% against the 4-week average of 475, alongside an average order value of \u00a3555.50 that rose +18.8% from \u00a3467.60. Customer metrics also showed positive momentum, with 441 total customers and a repeat customer rate of 89.6%, while the return rate dropped to 1.5%. Geographically, the United Kingdom led international markets with \u00a3256,731.08 in current sales, and product performance was spearheaded by the Kitchen and Dining category, which generated \u00a357,386.46 in current revenue.",
     "source": "llm_verified",
     "attempts": 1,
     "first_pass_failed": false,
     "fallback_used": false,
     "verification": {
       "ok": true,
-      "word_count": 103,
+      "word_count": 115,
       "extracted": [
         "\u00a3288,344",
         "+23.1%",
         "\u00a3234,203",
-        "\u00a3249,454",
         "+15.6%",
+        "\u00a3249,454",
         "527",
         "+1.5%",
-        "519",
         "+10.9%",
         "475",
         "\u00a3555.50",
         "+18.8%",
-        "+1.4%",
-        "\u00a3547.85"
+        "\u00a3467.60",
+        "441",
+        "89.6%",
+        "1.5%",
+        "\u00a3256,731.08",
+        "\u00a357,386.46"
       ],
       "unmatched": []
     }

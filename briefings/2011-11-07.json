@@ -633,14 +633,14 @@
     }
   ],
   "summary": {
-    "text": "During the week of 2011-11-07, retail performance surged significantly, driven by robust customer acquisition and strong category demand. Net revenue reached \u00a3350,123, representing a strong week-over-week increase of +21.4% compared to \u00a3288,344 in the previous period. Furthermore, this revenue performance exceeded the prior 4-week average of \u00a3246,463 by +42.1%. Transaction volume grew to 634 orders, which is an increase of +20.3% week-over-week from 527 orders and +30.7% against the 4-week average of 485. Average order value also rose slightly to \u00a3564.21, reflecting a +1.6% change week-over-week and a +7.0% variance compared to the 4-week average of \u00a3527.43. On a regional and product level, the United Kingdom anchored the geographic performance with \u00a3316,789.19, while Bags emerged as the top product category driver, generating \u00a344,750.31. Overall, customer metrics remained healthy with 514 customers and a repeat customer rate of 91.6%.",
+    "text": "For the week of 2011-11-07, net revenue reached \u00a3350,123, representing a strong week-over-week increase of +21.4% compared to \u00a3288,344 the previous week. This performance was also exceptionally positive when compared against the prior 4-week average of \u00a3246,463, surging by +42.1%. Operational volume saw significant growth with 634 total orders placed, which was well above the 8-week median of 456, while the average order value rose to \u00a3564.21, reflecting a +1.6% change week-over-week and a +7.0% increase against the prior 4-week average of \u00a3527.43. The primary top-level drivers fueling this weekly momentum were the Bags product category and sales originating from the United Kingdom, which stood at \u00a3316,789.19. Overall, the business experienced healthy gains across key customer and transactional metrics during the period.",
     "source": "llm_verified",
     "attempts": 1,
     "first_pass_failed": false,
     "fallback_used": false,
     "verification": {
       "ok": true,
-      "word_count": 138,
+      "word_count": 122,
       "extracted": [
         "\u00a3350,123",
         "+21.4%",
@@ -648,18 +648,12 @@
         "\u00a3246,463",
         "+42.1%",
         "634",
-        "+20.3%",
-        "527",
-        "+30.7%",
-        "485",
+        "456",
         "\u00a3564.21",
         "+1.6%",
         "+7.0%",
         "\u00a3527.43",
-        "\u00a3316,789.19",
-        "\u00a344,750.31",
-        "514",
-        "91.6%"
+        "\u00a3316,789.19"
       ],
       "unmatched": []
     }

@@ -21,7 +21,7 @@ Online Retail II has no product category column. Distinct canonical product desc
 2. `rapidfuzz` token typo recovery against the rule vocabulary (`0.19%`).
 3. Batched `temperature=0` Gemini classification constrained to the allowed enum for remaining items (`8.99%`), cached in `pipeline/mappings/category_map.csv`. Items below `0.90` confidence go to `pipeline/mappings/review_queue.csv`.
 
-Because neither rules nor the LLM are true ground truth, `consistency_check()` hides `120` rule-labelled products from the model and measures agreement (`65.0%`), recording disagreements such as multi-purpose giftware (`PANTRY HOOK BALLOON WHISK`: rule `Party` vs LLM `Kitchen and Dining`).
+Because neither rules nor the LLM are true ground truth, `consistency_check()` hides `120` rule-labelled products from the model and measures agreement (`66.7%`), recording disagreements such as multi-purpose giftware (`PANTRY HOOK BALLOON WHISK`: rule `Party` vs LLM `Kitchen and Dining`).
 
 ## 4. Semantic Compiler & Driver Breakdown (`app/compiler.py`, `app/drivers.py`)
 `pipeline/metrics.yml` defines 9 metrics and 5 dimensions with SQL expressions, grain, owner, caveats, and version numbers. User questions are mapped (by Gemini in LLM mode or `app/parser.py` in no-key mode) to a `pydantic`-validated `Request`. `app/compiler.py` compiles parameterised SQL from whitelisted identifiers only and executes it on a `read_only=True` DuckDB connection with `enable_external_access=False`. LLM-generated SQL is never accepted or executed.

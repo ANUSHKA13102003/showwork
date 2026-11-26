@@ -598,25 +598,30 @@
     }
   ],
   "summary": {
-    "text": "For the week of 2011-11-28, retail performance delivered a net revenue of \u00a3306,115, representing a week-over-week increase of +3.7% compared to the prior period, though it sat -6.0% below the prior 4-week average of \u00a3325,708. Sales volume reached 663 orders, which is a +7.6% improvement over the previous week, while the average order value stood at \u00a3466.64, reflecting a -4.9% shift. Growth was primarily driven by the Signs and Wall Art category and geographic performance in the United Kingdom, supported by strong customer engagement that included 514 total customers and a repeat customer rate of 94.6%. Overall, the period demonstrated solid order momentum and strong repeat purchasing behavior despite a slight contraction relative to the broader four-week baseline trends.",
+    "text": "During the week of 2011-11-28, retail performance delivered a total net revenue of \u00a3306,115, representing a week-over-week change of +3.7% compared to \u00a3295,233 in the prior period. However, this result sits at -6.0% below the prior 4-week average of \u00a3325,708. Sales volume reached 663 orders, which is a +7.6% increase over the previous week's 616 orders, while the average order value stood at \u00a3466.64, marking a decrease of -4.9% against the earlier \u00a3490.90 figure. Growth was primarily driven by the Signs and Wall Art category and geographic performance from the United Kingdom, which recorded \u00a3277,739.02 in current sales. Additional key metrics include 514 customers, a repeat customer rate of 94.6%, and a return rate of 1.1%. Overall, steady order volume helped lift weekly revenue despite a lower average order value compared to recent trends.",
     "source": "llm_verified",
     "attempts": 1,
     "first_pass_failed": false,
     "fallback_used": false,
     "verification": {
       "ok": true,
-      "word_count": 119,
+      "word_count": 134,
       "extracted": [
         "\u00a3306,115",
         "+3.7%",
+        "\u00a3295,233",
         "-6.0%",
         "\u00a3325,708",
         "663",
         "+7.6%",
+        "616",
         "\u00a3466.64",
         "-4.9%",
+        "\u00a3490.90",
+        "\u00a3277,739.02",
         "514",
-        "94.6%"
+        "94.6%",
+        "1.1%"
       ],
       "unmatched": []
     }

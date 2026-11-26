@@ -70,32 +70,27 @@
   "llm_consistency_check": {
     "sampled": 120,
     "answered": 120,
-    "agreement": 0.65,
+    "agreement": 0.6667,
     "examples_of_disagreement": [
       {
-        "description": "PANTRY HOOK BALLOON WHISK",
-        "rule": "Party",
+        "description": "DINOSAUR PARTY BAG + STICKER SET",
+        "rule": "Bags",
+        "llm": "Party"
+      },
+      {
+        "description": "KEY-RING CORKSCREW",
+        "rule": "Jewellery and Accessories",
         "llm": "Kitchen and Dining"
       },
       {
-        "description": "LOVE HEART SOCK HANGER",
-        "rule": "Home Decor",
-        "llm": "Storage"
+        "description": "JAZZ HEARTS PURSE NOTEBOOK",
+        "rule": "Bags",
+        "llm": "Stationery"
       },
       {
-        "description": "SMALL HEART FLOWERS HOOK",
-        "rule": "Storage",
-        "llm": "Home Decor"
-      },
-      {
-        "description": "HEXAGONAL CRYSTAL PERFUME BOTTLE",
-        "rule": "Kitchen and Dining",
-        "llm": "Bath and Beauty"
-      },
-      {
-        "description": "RECYCLED ACAPULCO MAT LAVENDER",
-        "rule": "Lighting",
-        "llm": "Garden and Outdoor"
+        "description": "SMALL SPOTTY CHOCOLATE GIFT BAG",
+        "rule": "Bags",
+        "llm": "Cards and Gift Wrap"
       },
       {
         "description": "TUB 24 PINK FLOWER PEGS",
@@ -108,19 +103,24 @@
         "llm": "Home Decor"
       },
       {
-        "description": "NOVELTY BISCUITS CAKE STAND 3 TIER",
-        "rule": "Party",
-        "llm": "Kitchen and Dining"
+        "description": "CHARLIE+LOLA RED HOT WATER BOTTLE",
+        "rule": "Kitchen and Dining",
+        "llm": "Textiles and Soft Furnishings"
+      },
+      {
+        "description": "SMALL HEART FLOWERS HOOK",
+        "rule": "Storage",
+        "llm": "Home Decor"
+      },
+      {
+        "description": "BROWN CHECK CAT DOORSTOP",
+        "rule": "Home Decor",
+        "llm": "Textiles and Soft Furnishings"
       },
       {
         "description": "BUTTERFLY CROCHET FOOD COVER",
         "rule": "Garden and Outdoor",
         "llm": "Kitchen and Dining"
-      },
-      {
-        "description": "RED STRIPE CERAMIC DRAWER KNOB",
-        "rule": "Storage",
-        "llm": "Home Decor"
       }
     ]
   }

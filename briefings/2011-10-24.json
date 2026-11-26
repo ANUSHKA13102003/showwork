@@ -598,14 +598,14 @@
     }
   ],
   "summary": {
-    "text": "During the week of 2011-10-24, total net revenue reached \u00a3234,203, representing a week-over-week decrease of -9.6% compared to \u00a3259,054, and performance was down -3.0% against the prior 4-week average of \u00a3241,493. Despite the revenue dip, order volume rose to 519, which is a +16.4% change versus the previous week's 446 and +13.9% higher than the 4-week average of 456. However, average order value declined to \u00a3467.60, marking a -21.1% drop week-over-week and sitting -14.7% below the 4-week benchmark of \u00a3548.03. Customer metrics remained healthy with 419 total customers and an 88.8% repeat customer rate. The primary category driver was Lighting, while geographic performance was led by Netherlands.",
+    "text": "For the retail week ending 2011-10-24, net revenue reached \u00a3234,203, representing a week-over-week decline of -9.6% compared to \u00a3259,054 the previous week, and performing at -3.0% below the prior four-week average of \u00a3241,493. Despite the drop in overall revenue, order volume rose significantly to 519 orders, marking a +16.4% increase week-over-week and sitting +13.9% above the four-week average of 456. However, the average order value fell to \u00a3467.60, down -21.1% from \u00a3592.73 and -14.7% below the four-week average of \u00a3548.03. Customer engagement remained strong with 419 customers, a +15.1% increase, and a repeat customer rate of 88.8%. Performance drivers included Lighting as the top category driver, while the Netherlands acted as the primary country driver despite a previous decline.",
     "source": "llm_verified",
     "attempts": 1,
     "first_pass_failed": false,
     "fallback_used": false,
     "verification": {
       "ok": true,
-      "word_count": 107,
+      "word_count": 119,
       "extracted": [
         "\u00a3234,203",
         "-9.6%",
@@ -614,14 +614,15 @@
         "\u00a3241,493",
         "519",
         "+16.4%",
-        "446",
         "+13.9%",
         "456",
         "\u00a3467.60",
         "-21.1%",
+        "\u00a3592.73",
         "-14.7%",
         "\u00a3548.03",
         "419",
+        "+15.1%",
         "88.8%"
       ],
       "unmatched": []

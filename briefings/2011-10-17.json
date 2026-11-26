@@ -598,25 +598,33 @@
     }
   ],
   "summary": {
-    "text": "During the week of 2011-10-17, retail performance was notably strong, driven by significant gains in sales value despite steady transaction volumes. Net revenue reached \u00a3259,054, marking a +26.8% increase compared to the previous week and outperforming the prior 4-week average by +0.9% against a baseline of \u00a3256,666. Order volume stood at 446 transactions, shifting slightly by -0.4% week-over-week, while the average order value climbed substantially to \u00a3592.73, representing a +20.0% week-over-week growth and a +2.7% rise compared to the 4-week average of \u00a3577.33. The primary growth drivers for the period were the Frames and Clocks product category and strong international demand originating from the Netherlands. Additional support came from returning customer types, ensuring a robust overall performance across key commercial metrics.",
+    "text": "During the week of 2011-10-17, retail performance delivered a net revenue of \u00a3259,054, marking a strong week-over-week increase of +26.8% compared to \u00a3204,251 the previous week. This current revenue also outperformed the prior four-week average of \u00a3256,666 by +0.9%. Sales were driven by 446 orders, which decreased slightly by -0.4% versus 448 orders the prior week and sat -3.0% below the four-week average of 460. However, average order value surged to \u00a3592.73, representing a +20.0% leap from \u00a3493.90 last week and a +2.7% rise over the four-week average of \u00a3577.33. The standout category driver was Frames and Clocks, while Netherlands emerged as the top country driver for the period. Customers totaled 364 with a repeat customer rate of 87.4% and a return rate of 2.0%, rounding out a highly profitable and resilient trading week.",
     "source": "llm_verified",
     "attempts": 1,
     "first_pass_failed": false,
     "fallback_used": false,
     "verification": {
       "ok": true,
-      "word_count": 121,
+      "word_count": 134,
       "extracted": [
         "\u00a3259,054",
         "+26.8%",
-        "+0.9%",
+        "\u00a3204,251",
         "\u00a3256,666",
+        "+0.9%",
         "446",
         "-0.4%",
+        "448",
+        "-3.0%",
+        "460",
         "\u00a3592.73",
         "+20.0%",
+        "\u00a3493.90",
         "+2.7%",
-        "\u00a3577.33"
+        "\u00a3577.33",
+        "364",
+        "87.4%",
+        "2.0%"
       ],
       "unmatched": []
     }

@@ -598,25 +598,30 @@
     }
   ],
   "summary": {
-    "text": "During the retail week of 2011-11-21, total net revenue reached \u00a3295,233, representing a week-over-week decrease of -20.0% compared to the previous week and a -4.9% decline versus the prior 4-week average. Performance was supported by 616 orders, though the average order value contracted by -9.6% to \u00a3490.90. The overall downward trend was primarily driven by the Christmas category and the United Kingdom country market, both of which saw significant declines in revenue compared to the prior period. Customer metrics showed 492 shoppers completing purchases with a repeat customer rate of 92.9% and a return rate of 2.4%. While order volume managed to stay above the 4-week average by +4.1%, softer basket sizes and reduced spending in key drivers weighed heavily on the week's overall financial results.",
+    "text": "During the retail week of 2011-11-21, net revenue reached \u00a3295,233, representing a week-over-week decline of -20.0% compared to \u00a3369,129 in the previous period. Performance was also down against the prior four-week average of \u00a3310,450, marking a -4.9% variance. Total orders dropped to 616, down -10.3% from 687 the prior week, while average order value fell to \u00a3490.90, reflecting a -9.6% decrease from \u00a3543.20. Despite these contractions, orders remained +4.1% above the four-week average of 592. The primary revenue drivers for the week were the Christmas category and sales originating from the United Kingdom, which generated \u00a3259,185.03 despite a prior period total of \u00a3317,151.2. Overall, the week experienced broad downward adjustments across primary revenue and average order value metrics following previous levels.",
     "source": "llm_verified",
     "attempts": 1,
     "first_pass_failed": false,
     "fallback_used": false,
     "verification": {
       "ok": true,
-      "word_count": 126,
+      "word_count": 121,
       "extracted": [
         "\u00a3295,233",
         "-20.0%",
+        "\u00a3369,129",
+        "\u00a3310,450",
         "-4.9%",
         "616",
-        "-9.6%",
+        "-10.3%",
+        "687",
         "\u00a3490.90",
-        "492",
-        "92.9%",
-        "2.4%",
-        "+4.1%"
+        "-9.6%",
+        "\u00a3543.20",
+        "+4.1%",
+        "592",
+        "\u00a3259,185.03",
+        "\u00a3317,151.2"
       ],
       "unmatched": []
     }
