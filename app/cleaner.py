@@ -7,7 +7,7 @@ import pandas as pd
 from fastapi import HTTPException, UploadFile
 from rapidfuzz import fuzz
 
-from app.config import LINES
+from app import db
 
 MAX_CSV_BYTES = 5 * 1024 * 1024  # 5 MB
 FORMULA_PREFIXES = ("=", "+", "-", "@")
@@ -381,14 +381,16 @@ def apply_fixes(df: pd.DataFrame, accepted_ids: set[str], preview_only: bool = F
 
 
 def build_sample_messy_csv() -> str:
-    """Build a realistic messy CSV from real Online Retail II transaction rows."""
-    base = pd.read_parquet(
-        LINES,
-        columns=["invoice", "stock_code", "description", "quantity", "invoice_date", "unit_price", "customer_id", "country"],
+    """Build a realistic messy CSV from real Online Retail II transaction rows via DuckDB."""
+    cols, uk_rows = db.query(
+        "SELECT invoice, stock_code, description, quantity, invoice_date, unit_price, customer_id, country "
+        "FROM lines WHERE country = 'United Kingdom' LIMIT 35"
     )
-    uk = base[base["country"] == "United Kingdom"].head(35).copy()
-    de = base[base["country"] == "Germany"].head(10).copy()
-    sample = pd.concat([uk, de], ignore_index=True)
+    _, de_rows = db.query(
+        "SELECT invoice, stock_code, description, quantity, invoice_date, unit_price, customer_id, country "
+        "FROM lines WHERE country = 'Germany' LIMIT 10"
+    )
+    sample = pd.DataFrame(uk_rows + de_rows, columns=cols)
     out = pd.DataFrame({
         "InvoiceNo": sample["invoice"].astype(str),
         "StockCode": sample["stock_code"].astype(str),
