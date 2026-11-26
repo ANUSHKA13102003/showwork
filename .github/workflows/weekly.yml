@@ -1,0 +1,36 @@
+name: Weekly Briefing
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  briefing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Generate next unprocessed weekly briefing
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python -m app.briefing --next
+      - name: Commit new briefing if changed
+        run: |
+          if [ -n "$(git status --porcelain briefings/ evals/results.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add briefings/ evals/results.json
+            git commit -m "add scheduled weekly briefing"
+            git push
+          else
+            echo "No new unprocessed weeks to commit."
+          fi

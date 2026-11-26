@@ -2,7 +2,7 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
-from app import db
+from app import briefing, db
 from evals import run as run_evals
 from pipeline import build
 
@@ -65,16 +65,19 @@ def generate_social_card():
 
 
 def main():
-    print("1/3 Running data pipeline and semantic metadata build...")
+    print("1/4 Running data pipeline and semantic metadata build...")
     build.build(use_llm=True)
     db.semantic.cache_clear()
     db.meta.cache_clear()
 
-    print("2/3 Generating social preview card...")
+    print("2/4 Generating social preview card...")
     generate_social_card()
 
-    print("3/3 Running evaluation suite...")
+    print("3/4 Running evaluation suite...")
     run_evals.evaluate(only_split=None, refresh=False)
+
+    print("4/4 Backfilling last 8 weekly briefings...")
+    briefing.backfill(8, use_llm=True)
     print("Done. Start the server with: uvicorn app.main:app --reload")
 
 
