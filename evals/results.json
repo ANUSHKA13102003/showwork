@@ -385,5 +385,12 @@
       "question": "What was net revenue from new customers in 2011?",
       "detail": "Ground truth 591,767.18; baseline answered 1850000.0 (refused=False)"
     }
-  ]
+  ],
+  "briefing_verifier": {
+    "weeks_evaluated": 8,
+    "first_pass_failures": 0,
+    "first_pass_failure_rate": 0.0,
+    "template_fallbacks": 0,
+    "verified_final_pass_rate": 1.0
+  }
 }

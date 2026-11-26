@@ -1,0 +1,663 @@
+{
+  "week": "2011-11-14",
+  "week_end_inclusive": "2011-11-20",
+  "previous_week": "2011-11-07",
+  "as_of": "2011-12-09",
+  "seasonal_note": "Seasonal context: November and early December reflect pre-Christmas wholesale giftware stocking, which lifts weekly revenue and order volume well above early-autumn baselines.",
+  "kpis": [
+    {
+      "key": "net_revenue",
+      "label": "Net revenue",
+      "unit": "gbp",
+      "current": 369129.47,
+      "current_fmt": "\u00a3369,129",
+      "wow_prev": 350123.4,
+      "wow_prev_fmt": "\u00a3350,123",
+      "wow_change": 19006.07,
+      "wow_change_fmt": "+\u00a319,006",
+      "wow_pct": 0.054284,
+      "wow_pct_fmt": "+5.4%",
+      "avg4": 282931.135,
+      "avg4_fmt": "\u00a3282,931",
+      "vs_avg4_change": 86198.335,
+      "vs_avg4_pct": 0.304662,
+      "vs_avg4_pct_fmt": "+30.5%",
+      "show_work": {
+        "metric_key": "net_revenue",
+        "metric": "Net revenue",
+        "unit": "gbp",
+        "definition": "Gross revenue minus the value of cancelled (returned) lines.",
+        "definition_version": 1,
+        "owner": "Commercial analytics",
+        "grain": "order line",
+        "caveats": "Returns are booked in the week of the cancellation invoice, not the week of the original sale.",
+        "sql": "SELECT SUM(amount) AS value FROM lines WHERE invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21'",
+        "filters": [],
+        "time_range": {
+          "start": "2011-11-14",
+          "end": "2011-11-21"
+        },
+        "compare_to": null,
+        "rows_scanned": 20580,
+        "result_rows": 1,
+        "as_of": "2011-12-09",
+        "planner": "deterministic"
+      }
+    },
+    {
+      "key": "orders",
+      "label": "Orders",
+      "unit": "count",
+      "current": 687.0,
+      "current_fmt": "687",
+      "wow_prev": 634.0,
+      "wow_prev_fmt": "634",
+      "wow_change": 53.0,
+      "wow_change_fmt": "+53",
+      "wow_pct": 0.083596,
+      "wow_pct_fmt": "+8.4%",
+      "avg4": 531.5,
+      "avg4_fmt": "532",
+      "vs_avg4_change": 155.5,
+      "vs_avg4_pct": 0.292568,
+      "vs_avg4_pct_fmt": "+29.3%",
+      "show_work": {
+        "metric_key": "orders",
+        "metric": "Orders",
+        "unit": "count",
+        "definition": "Number of distinct sale invoices.",
+        "definition_version": 1,
+        "owner": "Commercial analytics",
+        "grain": "invoice",
+        "caveats": "One invoice can contain several categories, so orders by category do not add up to total orders.",
+        "sql": "SELECT COUNT(DISTINCT CASE WHEN kind = 'sale' THEN invoice END) AS value FROM lines WHERE invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21'",
+        "filters": [],
+        "time_range": {
+          "start": "2011-11-14",
+          "end": "2011-11-21"
+        },
+        "compare_to": null,
+        "rows_scanned": 20580,
+        "result_rows": 1,
+        "as_of": "2011-12-09",
+        "planner": "deterministic"
+      }
+    },
+    {
+      "key": "aov",
+      "label": "Average order value",
+      "unit": "gbp",
+      "current": 543.199942,
+      "current_fmt": "\u00a3543.20",
+      "wow_prev": 564.206183,
+      "wow_prev_fmt": "\u00a3564.21",
+      "wow_change": -21.006241,
+      "wow_change_fmt": "-\u00a321.01",
+      "wow_pct": -0.037231,
+      "wow_pct_fmt": "-3.7%",
+      "avg4": 545.008479,
+      "avg4_fmt": "\u00a3545.01",
+      "vs_avg4_change": -1.808537,
+      "vs_avg4_pct": -0.003318,
+      "vs_avg4_pct_fmt": "-0.3%",
+      "show_work": {
+        "metric_key": "aov",
+        "metric": "Average order value",
+        "unit": "gbp",
+        "definition": "Gross revenue divided by the number of orders.",
+        "definition_version": 1,
+        "owner": "Commercial analytics",
+        "grain": "invoice",
+        "caveats": "With a category filter this is category revenue per order that contains the category.",
+        "sql": "SELECT SUM(CASE WHEN kind = 'sale' THEN amount ELSE 0 END) / NULLIF(COUNT(DISTINCT CASE WHEN kind = 'sale' THEN invoice END), 0) AS value FROM lines WHERE invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21'",
+        "filters": [],
+        "time_range": {
+          "start": "2011-11-14",
+          "end": "2011-11-21"
+        },
+        "compare_to": null,
+        "rows_scanned": 20580,
+        "result_rows": 1,
+        "as_of": "2011-12-09",
+        "planner": "deterministic"
+      }
+    },
+    {
+      "key": "customers",
+      "label": "Customers",
+      "unit": "count",
+      "current": 569.0,
+      "current_fmt": "569",
+      "wow_prev": 514.0,
+      "wow_prev_fmt": "514",
+      "wow_change": 55.0,
+      "wow_change_fmt": "+55",
+      "wow_pct": 0.107004,
+      "wow_pct_fmt": "+10.7%",
+      "avg4": 434.5,
+      "avg4_fmt": "434",
+      "vs_avg4_change": 134.5,
+      "vs_avg4_pct": 0.309551,
+      "vs_avg4_pct_fmt": "+31.0%",
+      "show_work": {
+        "metric_key": "customers",
+        "metric": "Customers",
+        "unit": "count",
+        "definition": "Number of distinct identified customers with at least one sale in the period.",
+        "definition_version": 1,
+        "owner": "Commercial analytics",
+        "grain": "customer",
+        "caveats": "Guest orders have no customer ID and are not counted.",
+        "sql": "SELECT COUNT(DISTINCT CASE WHEN kind = 'sale' AND NOT is_guest THEN customer_id END) AS value FROM lines WHERE invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21'",
+        "filters": [],
+        "time_range": {
+          "start": "2011-11-14",
+          "end": "2011-11-21"
+        },
+        "compare_to": null,
+        "rows_scanned": 20580,
+        "result_rows": 1,
+        "as_of": "2011-12-09",
+        "planner": "deterministic"
+      }
+    },
+    {
+      "key": "repeat_customer_rate",
+      "label": "Repeat customer rate",
+      "unit": "ratio",
+      "current": 0.929701,
+      "current_fmt": "93.0%",
+      "wow_prev": 0.916342,
+      "wow_prev_fmt": "91.6%",
+      "wow_change": 0.013359,
+      "wow_change_fmt": "+1.3%",
+      "wow_pct": 0.014578,
+      "wow_pct_fmt": "+1.5%",
+      "avg4": 0.893372,
+      "avg4_fmt": "89.3%",
+      "vs_avg4_change": 0.036329,
+      "vs_avg4_pct": 0.040665,
+      "vs_avg4_pct_fmt": "+4.1%",
+      "show_work": {
+        "metric_key": "repeat_customer_rate",
+        "metric": "Repeat customer rate",
+        "unit": "ratio",
+        "definition": "Share of identified customers in the period whose order was not their first order in this dataset.",
+        "definition_version": 1,
+        "owner": "Commercial analytics",
+        "grain": "customer",
+        "caveats": "The data starts in December 2009, so customers who bought before then look new. Early months understate this rate and inflate \"new\" customers.",
+        "sql": "SELECT COUNT(DISTINCT CASE WHEN kind = 'sale' AND customer_type = 'returning' THEN customer_id END) / NULLIF(COUNT(DISTINCT CASE WHEN kind = 'sale' AND NOT is_guest THEN customer_id END), 0) AS value FROM lines WHERE invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21'",
+        "filters": [],
+        "time_range": {
+          "start": "2011-11-14",
+          "end": "2011-11-21"
+        },
+        "compare_to": null,
+        "rows_scanned": 20580,
+        "result_rows": 1,
+        "as_of": "2011-12-09",
+        "planner": "deterministic"
+      }
+    },
+    {
+      "key": "return_rate",
+      "label": "Return rate",
+      "unit": "ratio",
+      "current": 0.01085,
+      "current_fmt": "1.1%",
+      "wow_prev": 0.0212,
+      "wow_prev_fmt": "2.1%",
+      "wow_change": -0.01035,
+      "wow_change_fmt": "-1.0%",
+      "wow_pct": -0.488215,
+      "wow_pct_fmt": "-48.8%",
+      "avg4": 0.022813,
+      "avg4_fmt": "2.3%",
+      "vs_avg4_change": -0.011963,
+      "vs_avg4_pct": -0.524397,
+      "vs_avg4_pct_fmt": "-52.4%",
+      "show_work": {
+        "metric_key": "return_rate",
+        "metric": "Return rate",
+        "unit": "ratio",
+        "definition": "Returns divided by gross revenue, by value.",
+        "definition_version": 1,
+        "owner": "Commercial analytics",
+        "grain": "order line",
+        "caveats": "Returns and sales in the same period are not necessarily the same orders.",
+        "sql": "SELECT -SUM(CASE WHEN kind = 'return' THEN amount ELSE 0 END) / NULLIF(SUM(CASE WHEN kind = 'sale' THEN amount ELSE 0 END), 0) AS value FROM lines WHERE invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21'",
+        "filters": [],
+        "time_range": {
+          "start": "2011-11-14",
+          "end": "2011-11-21"
+        },
+        "compare_to": null,
+        "rows_scanned": 20580,
+        "result_rows": 1,
+        "as_of": "2011-12-09",
+        "planner": "deterministic"
+      }
+    }
+  ],
+  "drivers": {
+    "metric": "net_revenue",
+    "current": 369129.47,
+    "previous": 350123.4,
+    "change": 19006.07,
+    "change_pct": 0.05428391818427446,
+    "rows_scanned": 39473,
+    "total_sql": "SELECT SUM(CASE WHEN invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21' THEN amount ELSE 0 END) AS current, SUM(CASE WHEN invoice_date >= DATE '2011-11-07' AND invoice_date < DATE '2011-11-14' THEN amount ELSE 0 END) AS previous, COUNT(*) AS rows_scanned FROM lines WHERE ((invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21') OR (invoice_date >= DATE '2011-11-07' AND invoice_date < DATE '2011-11-14'))",
+    "dimensions": {
+      "country": {
+        "members": [
+          {
+            "member": "Netherlands",
+            "current": 457.74,
+            "previous": 9793.12,
+            "change": -9335.38
+          },
+          {
+            "member": "Germany",
+            "current": 9074.57,
+            "previous": 3496.5,
+            "change": 5578.07
+          },
+          {
+            "member": "Australia",
+            "current": 5355.4,
+            "previous": 0.0,
+            "change": 5355.4
+          },
+          {
+            "member": "Japan",
+            "current": 4808.48,
+            "previous": 0.0,
+            "change": 4808.48
+          },
+          {
+            "member": "Denmark",
+            "current": 1794.05,
+            "previous": 0.0,
+            "change": 1794.05
+          },
+          {
+            "member": "All other (18)",
+            "current": 347639.23,
+            "previous": 336833.78,
+            "change": 10805.45,
+            "other": true
+          }
+        ],
+        "sum_of_changes": 19006.07,
+        "sums_to_total": true,
+        "sql": "SELECT country AS member, SUM(CASE WHEN invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21' THEN amount ELSE 0 END) AS current, SUM(CASE WHEN invoice_date >= DATE '2011-11-07' AND invoice_date < DATE '2011-11-14' THEN amount ELSE 0 END) AS previous FROM lines WHERE ((invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21') OR (invoice_date >= DATE '2011-11-07' AND invoice_date < DATE '2011-11-14')) GROUP BY country",
+        "show_work": {
+          "metric_key": "net_revenue",
+          "metric": "Net revenue",
+          "unit": "gbp",
+          "definition": "Gross revenue minus the value of cancelled (returned) lines.",
+          "definition_version": 1,
+          "owner": "Commercial analytics",
+          "grain": "order line",
+          "caveats": "Returns are booked in the week of the cancellation invoice, not the week of the original sale.",
+          "sql": "SELECT country AS member, SUM(CASE WHEN invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21' THEN amount ELSE 0 END) AS current, SUM(CASE WHEN invoice_date >= DATE '2011-11-07' AND invoice_date < DATE '2011-11-14' THEN amount ELSE 0 END) AS previous FROM lines WHERE ((invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21') OR (invoice_date >= DATE '2011-11-07' AND invoice_date < DATE '2011-11-14')) GROUP BY country",
+          "filters": [],
+          "time_range": {
+            "start": "2011-11-14",
+            "end": "2011-11-21"
+          },
+          "compare_to": null,
+          "rows_scanned": 20580,
+          "result_rows": 1,
+          "as_of": "2011-12-09",
+          "planner": "deterministic"
+        }
+      },
+      "category": {
+        "members": [
+          {
+            "member": "Bags",
+            "current": 38798.4,
+            "previous": 44750.31,
+            "change": -5951.91
+          },
+          {
+            "member": "Kitchen and Dining",
+            "current": 67316.89,
+            "previous": 61628.09,
+            "change": 5688.8
+          },
+          {
+            "member": "Lighting",
+            "current": 23748.75,
+            "previous": 18456.59,
+            "change": 5292.16
+          },
+          {
+            "member": "Storage",
+            "current": 24075.94,
+            "previous": 29345.06,
+            "change": -5269.12
+          },
+          {
+            "member": "Christmas",
+            "current": 51734.01,
+            "previous": 46657.9,
+            "change": 5076.11
+          },
+          {
+            "member": "All other (13)",
+            "current": 163455.48,
+            "previous": 149285.45,
+            "change": 14170.03,
+            "other": true
+          }
+        ],
+        "sum_of_changes": 19006.07,
+        "sums_to_total": true,
+        "sql": "SELECT category AS member, SUM(CASE WHEN invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21' THEN amount ELSE 0 END) AS current, SUM(CASE WHEN invoice_date >= DATE '2011-11-07' AND invoice_date < DATE '2011-11-14' THEN amount ELSE 0 END) AS previous FROM lines WHERE ((invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21') OR (invoice_date >= DATE '2011-11-07' AND invoice_date < DATE '2011-11-14')) GROUP BY category",
+        "show_work": {
+          "metric_key": "net_revenue",
+          "metric": "Net revenue",
+          "unit": "gbp",
+          "definition": "Gross revenue minus the value of cancelled (returned) lines.",
+          "definition_version": 1,
+          "owner": "Commercial analytics",
+          "grain": "order line",
+          "caveats": "Returns are booked in the week of the cancellation invoice, not the week of the original sale.",
+          "sql": "SELECT category AS member, SUM(CASE WHEN invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21' THEN amount ELSE 0 END) AS current, SUM(CASE WHEN invoice_date >= DATE '2011-11-07' AND invoice_date < DATE '2011-11-14' THEN amount ELSE 0 END) AS previous FROM lines WHERE ((invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21') OR (invoice_date >= DATE '2011-11-07' AND invoice_date < DATE '2011-11-14')) GROUP BY category",
+          "filters": [],
+          "time_range": {
+            "start": "2011-11-14",
+            "end": "2011-11-21"
+          },
+          "compare_to": null,
+          "rows_scanned": 20580,
+          "result_rows": 1,
+          "as_of": "2011-12-09",
+          "planner": "deterministic"
+        }
+      },
+      "customer_type": {
+        "members": [
+          {
+            "member": "returning",
+            "current": 254452.86,
+            "previous": 233333.17,
+            "change": 21119.69
+          },
+          {
+            "member": "new",
+            "current": 11374.14,
+            "previous": 18603.44,
+            "change": -7229.3
+          },
+          {
+            "member": "guest",
+            "current": 103302.47,
+            "previous": 98186.79,
+            "change": 5115.68
+          }
+        ],
+        "sum_of_changes": 19006.07,
+        "sums_to_total": true,
+        "sql": "SELECT customer_type AS member, SUM(CASE WHEN invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21' THEN amount ELSE 0 END) AS current, SUM(CASE WHEN invoice_date >= DATE '2011-11-07' AND invoice_date < DATE '2011-11-14' THEN amount ELSE 0 END) AS previous FROM lines WHERE ((invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21') OR (invoice_date >= DATE '2011-11-07' AND invoice_date < DATE '2011-11-14')) GROUP BY customer_type",
+        "show_work": {
+          "metric_key": "net_revenue",
+          "metric": "Net revenue",
+          "unit": "gbp",
+          "definition": "Gross revenue minus the value of cancelled (returned) lines.",
+          "definition_version": 1,
+          "owner": "Commercial analytics",
+          "grain": "order line",
+          "caveats": "Returns are booked in the week of the cancellation invoice, not the week of the original sale.",
+          "sql": "SELECT customer_type AS member, SUM(CASE WHEN invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21' THEN amount ELSE 0 END) AS current, SUM(CASE WHEN invoice_date >= DATE '2011-11-07' AND invoice_date < DATE '2011-11-14' THEN amount ELSE 0 END) AS previous FROM lines WHERE ((invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21') OR (invoice_date >= DATE '2011-11-07' AND invoice_date < DATE '2011-11-14')) GROUP BY customer_type",
+          "filters": [],
+          "time_range": {
+            "start": "2011-11-14",
+            "end": "2011-11-21"
+          },
+          "compare_to": null,
+          "rows_scanned": 20580,
+          "result_rows": 1,
+          "as_of": "2011-12-09",
+          "planner": "deterministic"
+        }
+      }
+    }
+  },
+  "anomalies": [
+    {
+      "metric_key": "orders",
+      "metric": "Orders",
+      "unit": "count",
+      "current": 687.0,
+      "current_fmt": "687",
+      "median_8w": 475.5,
+      "median_8w_fmt": "476",
+      "mad_8w": 32.0,
+      "mad_score": 4.46,
+      "direction": "above",
+      "note": "November pre-Christmas wholesale stocking creates a recurring seasonal peak; interpret alongside YoY and category mix.",
+      "show_work": {
+        "metric_key": "orders",
+        "metric": "Orders",
+        "unit": "count",
+        "definition": "Number of distinct sale invoices.",
+        "definition_version": 1,
+        "owner": "Commercial analytics",
+        "grain": "invoice",
+        "caveats": "One invoice can contain several categories, so orders by category do not add up to total orders.",
+        "sql": "SELECT COUNT(DISTINCT CASE WHEN kind = 'sale' THEN invoice END) AS value FROM lines WHERE invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21'",
+        "filters": [],
+        "time_range": {
+          "start": "2011-11-14",
+          "end": "2011-11-21"
+        },
+        "compare_to": null,
+        "rows_scanned": 20580,
+        "result_rows": 1,
+        "as_of": "2011-12-09",
+        "planner": "deterministic"
+      }
+    }
+  ],
+  "watchlist": [
+    {
+      "rule": "RETURN_MONITOR",
+      "title": "Returns totalled \u00a34,049 (1.1% of gross sales)",
+      "detail": "Return rate moved -1.2% vs the prior 4-week average (2.3%).",
+      "fact_numbers": [
+        {
+          "value": 4048.89,
+          "unit": "gbp"
+        },
+        {
+          "value": 0.01085,
+          "unit": "ratio"
+        },
+        {
+          "value": -0.011963,
+          "unit": "ratio"
+        },
+        {
+          "value": 0.022813,
+          "unit": "ratio"
+        }
+      ],
+      "show_work": {
+        "metric_key": "returns",
+        "metric": "Returns",
+        "unit": "gbp",
+        "definition": "Value of product lines on cancellation invoices (invoice number starting with C), shown as a positive amount.",
+        "definition_version": 1,
+        "owner": "Commercial analytics",
+        "grain": "order line",
+        "caveats": "A cancellation can refer to a sale made before the data starts in December 2009.",
+        "sql": "SELECT -SUM(CASE WHEN kind = 'return' THEN amount ELSE 0 END) AS value FROM lines WHERE invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21'",
+        "filters": [],
+        "time_range": {
+          "start": "2011-11-14",
+          "end": "2011-11-21"
+        },
+        "compare_to": null,
+        "rows_scanned": 20580,
+        "result_rows": 1,
+        "as_of": "2011-12-09",
+        "planner": "deterministic"
+      }
+    },
+    {
+      "rule": "CATEGORY_DRAG",
+      "title": "Bags declined -\u00a35,952 WoW",
+      "detail": "Week net revenue in Bags was \u00a338,798 vs \u00a344,750 the prior week.",
+      "fact_numbers": [
+        {
+          "value": -5951.91,
+          "unit": "gbp"
+        },
+        {
+          "value": 38798.4,
+          "unit": "gbp"
+        },
+        {
+          "value": 44750.31,
+          "unit": "gbp"
+        }
+      ],
+      "show_work": {
+        "metric_key": "net_revenue",
+        "metric": "Net revenue",
+        "unit": "gbp",
+        "definition": "Gross revenue minus the value of cancelled (returned) lines.",
+        "definition_version": 1,
+        "owner": "Commercial analytics",
+        "grain": "order line",
+        "caveats": "Returns are booked in the week of the cancellation invoice, not the week of the original sale.",
+        "sql": "SELECT category AS member, SUM(CASE WHEN invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21' THEN amount ELSE 0 END) AS current, SUM(CASE WHEN invoice_date >= DATE '2011-11-07' AND invoice_date < DATE '2011-11-14' THEN amount ELSE 0 END) AS previous FROM lines WHERE ((invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21') OR (invoice_date >= DATE '2011-11-07' AND invoice_date < DATE '2011-11-14')) GROUP BY category",
+        "filters": [],
+        "time_range": {
+          "start": "2011-11-14",
+          "end": "2011-11-21"
+        },
+        "compare_to": null,
+        "rows_scanned": 20580,
+        "result_rows": 1,
+        "as_of": "2011-12-09",
+        "planner": "deterministic"
+      }
+    },
+    {
+      "rule": "GUEST_SHARE",
+      "title": "Guest checkout accounted for 27.7% of gross sales (\u00a3103,302)",
+      "detail": "Orders without a Customer ID cannot be linked to retention cohorts; monitor wholesale vs unidentified till/web lines.",
+      "fact_numbers": [
+        {
+          "value": 0.276817953752731,
+          "unit": "ratio"
+        },
+        {
+          "value": 103302.47,
+          "unit": "gbp"
+        }
+      ],
+      "show_work": {
+        "metric_key": "gross_revenue",
+        "metric": "Gross revenue",
+        "unit": "gbp",
+        "definition": "Quantity times unit price for valid product sale lines.",
+        "definition_version": 1,
+        "owner": "Commercial analytics",
+        "grain": "order line",
+        "caveats": "Excludes postage, fees, manual adjustments and zero-price lines, which are quarantined.",
+        "sql": "SELECT SUM(CASE WHEN kind = 'sale' THEN amount ELSE 0 END) AS value FROM lines WHERE invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21' AND customer_type IN ('guest')",
+        "filters": [
+          {
+            "dimension": "customer_type",
+            "values": [
+              "guest"
+            ]
+          }
+        ],
+        "time_range": {
+          "start": "2011-11-14",
+          "end": "2011-11-21"
+        },
+        "compare_to": null,
+        "rows_scanned": 4689,
+        "result_rows": 1,
+        "as_of": "2011-12-09",
+        "planner": "deterministic"
+      }
+    },
+    {
+      "rule": "EXPORT_MOVER",
+      "title": "Top export swing: Netherlands (-\u00a39,335 WoW)",
+      "detail": "Netherlands net revenue was \u00a3457.74 vs \u00a39,793 in 2011-11-07.",
+      "fact_numbers": [
+        {
+          "value": -9335.38,
+          "unit": "gbp"
+        },
+        {
+          "value": 457.74,
+          "unit": "gbp"
+        },
+        {
+          "value": 9793.12,
+          "unit": "gbp"
+        }
+      ],
+      "show_work": {
+        "metric_key": "net_revenue",
+        "metric": "Net revenue",
+        "unit": "gbp",
+        "definition": "Gross revenue minus the value of cancelled (returned) lines.",
+        "definition_version": 1,
+        "owner": "Commercial analytics",
+        "grain": "order line",
+        "caveats": "Returns are booked in the week of the cancellation invoice, not the week of the original sale.",
+        "sql": "SELECT country AS member, SUM(CASE WHEN invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21' THEN amount ELSE 0 END) AS current, SUM(CASE WHEN invoice_date >= DATE '2011-11-07' AND invoice_date < DATE '2011-11-14' THEN amount ELSE 0 END) AS previous FROM lines WHERE ((invoice_date >= DATE '2011-11-14' AND invoice_date < DATE '2011-11-21') OR (invoice_date >= DATE '2011-11-07' AND invoice_date < DATE '2011-11-14')) GROUP BY country",
+        "filters": [],
+        "time_range": {
+          "start": "2011-11-14",
+          "end": "2011-11-21"
+        },
+        "compare_to": null,
+        "rows_scanned": 20580,
+        "result_rows": 1,
+        "as_of": "2011-12-09",
+        "planner": "deterministic"
+      }
+    }
+  ],
+  "summary": {
+    "text": "During the week of 2011-11-14, total net revenue reached \u00a3369,129, representing a week-over-week increase of +\u00a319,006 or +5.4% compared to the previous week's total of \u00a3350,123. This performance was also significantly stronger than recent trends, coming in +30.5% higher than the prior 4-week average of \u00a3282,931. Sales growth was supported by 687 total orders, which is up +8.4% week-over-week from 634 orders and +29.3% versus the 4-week average of 532, alongside an average order value of \u00a3543.20. Across product categories and geographic regions, the top drivers for the week were Bags and Netherlands, respectively. Overall, customer engagement remained robust with 569 customers and a strong repeat customer rate of 93.0%, marking positive momentum across multiple key performance indicators compared to historical averages.",
+    "source": "llm_verified",
+    "attempts": 1,
+    "first_pass_failed": false,
+    "fallback_used": false,
+    "verification": {
+      "ok": true,
+      "word_count": 122,
+      "extracted": [
+        "\u00a3369,129",
+        "+\u00a319,006",
+        "+5.4%",
+        "\u00a3350,123",
+        "+30.5%",
+        "\u00a3282,931",
+        "687",
+        "+8.4%",
+        "634",
+        "+29.3%",
+        "532",
+        "\u00a3543.20",
+        "569",
+        "93.0%"
+      ],
+      "unmatched": []
+    }
+  }
+}
