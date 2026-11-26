@@ -1,0 +1,119 @@
+version: 1
+table: lines
+source: UCI Online Retail II (Chen, 2019), transactions from 2009-12-01 to 2011-12-09, amounts in GBP
+dimensions:
+  week:
+    sql: week
+    label: Week
+    description: Week starting Monday, from the invoice date.
+  month:
+    sql: month
+    label: Month
+    description: Calendar month of the invoice date.
+  country:
+    sql: country
+    label: Country
+    description: Country of the customer as recorded on the invoice.
+  category:
+    sql: category
+    label: Category
+    description: Product category derived from the product description. The source data has no category field.
+  customer_type:
+    sql: customer_type
+    label: Customer type
+    description: new = the customer's first order in this dataset, returning = any later order, guest = no customer ID.
+metrics:
+  net_revenue:
+    label: Net revenue
+    unit: gbp
+    definition: Gross revenue minus the value of cancelled (returned) lines.
+    sql: SUM(amount)
+    line_sql: amount
+    owner: Commercial analytics
+    grain: order line
+    additive: true
+    caveats: Returns are booked in the week of the cancellation invoice, not the week of the original sale.
+    definition_version: 1
+  gross_revenue:
+    label: Gross revenue
+    unit: gbp
+    definition: Quantity times unit price for valid product sale lines.
+    sql: SUM(CASE WHEN kind = 'sale' THEN amount ELSE 0 END)
+    line_sql: CASE WHEN kind = 'sale' THEN amount ELSE 0 END
+    owner: Commercial analytics
+    grain: order line
+    additive: true
+    caveats: Excludes postage, fees, manual adjustments and zero-price lines, which are quarantined.
+    definition_version: 1
+  returns:
+    label: Returns
+    unit: gbp
+    definition: Value of product lines on cancellation invoices (invoice number starting with C), shown as a positive amount.
+    sql: -SUM(CASE WHEN kind = 'return' THEN amount ELSE 0 END)
+    line_sql: CASE WHEN kind = 'return' THEN -amount ELSE 0 END
+    owner: Commercial analytics
+    grain: order line
+    additive: true
+    caveats: A cancellation can refer to a sale made before the data starts in December 2009.
+    definition_version: 1
+  orders:
+    label: Orders
+    unit: count
+    definition: Number of distinct sale invoices.
+    sql: COUNT(DISTINCT CASE WHEN kind = 'sale' THEN invoice END)
+    owner: Commercial analytics
+    grain: invoice
+    additive: false
+    caveats: One invoice can contain several categories, so orders by category do not add up to total orders.
+    definition_version: 1
+  units:
+    label: Units sold
+    unit: count
+    definition: Sum of quantity on valid product sale lines.
+    sql: SUM(CASE WHEN kind = 'sale' THEN quantity ELSE 0 END)
+    line_sql: CASE WHEN kind = 'sale' THEN quantity ELSE 0 END
+    owner: Commercial analytics
+    grain: order line
+    additive: true
+    caveats: Many customers are wholesalers, so a few large lines can dominate a week.
+    definition_version: 1
+  customers:
+    label: Customers
+    unit: count
+    definition: Number of distinct identified customers with at least one sale in the period.
+    sql: COUNT(DISTINCT CASE WHEN kind = 'sale' AND NOT is_guest THEN customer_id END)
+    owner: Commercial analytics
+    grain: customer
+    additive: false
+    caveats: Guest orders have no customer ID and are not counted.
+    definition_version: 1
+  aov:
+    label: Average order value
+    unit: gbp
+    definition: Gross revenue divided by the number of orders.
+    sql: SUM(CASE WHEN kind = 'sale' THEN amount ELSE 0 END) / NULLIF(COUNT(DISTINCT CASE WHEN kind = 'sale' THEN invoice END), 0)
+    owner: Commercial analytics
+    grain: invoice
+    additive: false
+    caveats: With a category filter this is category revenue per order that contains the category.
+    definition_version: 1
+  repeat_customer_rate:
+    label: Repeat customer rate
+    unit: ratio
+    definition: Share of identified customers in the period whose order was not their first order in this dataset.
+    sql: COUNT(DISTINCT CASE WHEN kind = 'sale' AND customer_type = 'returning' THEN customer_id END) / NULLIF(COUNT(DISTINCT CASE WHEN kind = 'sale' AND NOT is_guest THEN customer_id END), 0)
+    owner: Commercial analytics
+    grain: customer
+    additive: false
+    caveats: The data starts in December 2009, so customers who bought before then look new. Early months understate this rate and inflate "new" customers.
+    definition_version: 1
+  return_rate:
+    label: Return rate
+    unit: ratio
+    definition: Returns divided by gross revenue, by value.
+    sql: -SUM(CASE WHEN kind = 'return' THEN amount ELSE 0 END) / NULLIF(SUM(CASE WHEN kind = 'sale' THEN amount ELSE 0 END), 0)
+    owner: Commercial analytics
+    grain: order line
+    additive: false
+    caveats: Returns and sales in the same period are not necessarily the same orders.
+    definition_version: 1
