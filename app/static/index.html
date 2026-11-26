@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Showwork — Ask your data anything. It shows its work.</title>
+  <meta name="description" content="Ask business data in plain English. Every number shows its work: definition, SQL, row count. Measured accuracy, tested refusals.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+  <script
+    src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"
+    integrity="sha384-T/4KgSWuZEPozpPz7rnnp/5lDSnpY1VPJCojf1S81uTHS1E38qgLfMgVsAeRCWc4"
+    crossorigin="anonymous"
+    defer
+  ></script>
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand-wrap">
+        <a href="/ask" class="brand" data-nav="ask">Showwork</a>
+        <span class="tagline">Ask your data anything. It shows its work.</span>
+      </div>
+      <nav class="nav" aria-label="Primary">
+        <a href="/ask" class="nav-link active" data-nav="ask">Ask</a>
+        <a href="/scorecard" class="nav-link" data-nav="scorecard">Scorecard</a>
+      </nav>
+      <div class="mode-wrap">
+        <button type="button" id="mode-pill" class="mode-pill" title="Active execution mode">
+          <span class="mode-dot" id="mode-dot"></span>
+          <span id="mode-label">Connecting...</span>
+        </button>
+      </div>
+    </div>
+    <div id="mode-banner" class="mode-banner hidden"></div>
+  </header>
+
+  <main class="container main-content">
+    <section id="wakeup-screen" class="card wakeup-card hidden" aria-live="polite">
+      <div class="spinner" aria-hidden="true"></div>
+      <h2>Waking up the analytics server</h2>
+      <p>Free-tier instances sleep after inactivity and take up to a minute on the first visit. Connecting to read-only DuckDB...</p>
+      <p class="muted" id="wakeup-elapsed">Elapsed: 0s</p>
+    </section>
+
+    <section id="view-ask" class="view">
+      <div class="page-intro">
+        <div>
+          <h1>Ask governed metrics</h1>
+          <p class="subtitle">
+            UCI Online Retail II (1 Dec 2009 to 9 Dec 2011, GBP). The LLM never calculates or writes SQL; code computes every figure. Click any highlighted number to inspect its work.
+          </p>
+        </div>
+      </div>
+
+      <form id="ask-form" class="card ask-box" novalidate>
+        <label for="ask-input" class="sr-only">Ask a question about retail performance</label>
+        <div class="ask-input-row">
+          <input
+            id="ask-input"
+            type="text"
+            maxlength="400"
+            placeholder="e.g. What was net revenue in November 2011 vs the previous month?"
+            autocomplete="off"
+            required
+          >
+          <button type="submit" id="ask-submit" class="btn-primary">Ask</button>
+        </div>
+        <div class="ask-meta-row">
+          <div id="suggested-list" class="chips" aria-label="Suggested questions"></div>
+          <span id="char-count" class="char-count">0 / 400</span>
+        </div>
+      </form>
+
+      <div id="ask-loading" class="card state-card hidden" aria-live="polite">
+        <div class="spinner-sm" aria-hidden="true"></div>
+        <span>Compiling structured metric request against DuckDB...</span>
+      </div>
+
+      <div id="ask-error" class="card error-card hidden" role="alert"></div>
+
+      <div id="ask-empty" class="card empty-card">
+        <h2>Ready for a question</h2>
+        <p>Pick a suggested prompt above or ask about revenue, orders, units, customers, average order value, repeat customer rate, or return rate across week, month, country, category, or customer type.</p>
+      </div>
+
+      <div id="ask-result" class="ask-grid hidden">
+        <div class="ask-main-col">
+          <article class="card answer-card">
+            <div class="answer-header">
+              <span id="answer-badge" class="badge">Verified</span>
+              <span id="answer-planner" class="muted-sm"></span>
+            </div>
+            <p id="answer-text" class="answer-sentence"></p>
+            <p id="answer-hint" class="click-hint hidden">Click any highlighted figure to inspect its definition, SQL, and row count.</p>
+          </article>
+
+          <article id="chart-card" class="card hidden">
+            <h2 id="chart-title" class="card-title"></h2>
+            <div class="chart-wrap">
+              <canvas id="ask-chart"></canvas>
+            </div>
+          </article>
+
+          <article id="table-card" class="card hidden">
+            <div class="card-head-row">
+              <h2 class="card-title">Computed rows</h2>
+              <button type="button" id="inspect-query-btn" class="btn-ghost">Show query work</button>
+            </div>
+            <div class="table-scroll">
+              <table id="result-table" class="data-table"></table>
+            </div>
+          </article>
+        </div>
+
+        <aside id="work-panel" class="card work-panel hidden" aria-label="Show work panel">
+          <div class="work-header">
+            <div>
+              <span class="eyebrow">Show work</span>
+              <h2 id="work-metric" class="work-title">Metric</h2>
+            </div>
+            <span id="work-version" class="badge-outline">v1</span>
+          </div>
+          <div id="work-selected-val" class="work-selected hidden"></div>
+          <dl class="work-dl">
+            <div>
+              <dt>Definition</dt>
+              <dd id="work-definition"></dd>
+            </div>
+            <div class="work-two-col">
+              <div>
+                <dt>Grain</dt>
+                <dd id="work-grain"></dd>
+              </div>
+              <div>
+                <dt>Owner</dt>
+                <dd id="work-owner"></dd>
+              </div>
+            </div>
+            <div class="work-two-col">
+              <div>
+                <dt>Rows scanned</dt>
+                <dd id="work-scanned" class="num"></dd>
+              </div>
+              <div>
+                <dt>Data as of</dt>
+                <dd id="work-asof" class="num"></dd>
+              </div>
+            </div>
+            <div>
+              <dt>Active filters</dt>
+              <dd id="work-filters"></dd>
+            </div>
+            <div>
+              <dt>Caveats</dt>
+              <dd id="work-caveats" class="muted"></dd>
+            </div>
+            <div>
+              <dt>Exact executed SQL (read-only DuckDB)</dt>
+              <dd><pre id="work-sql" class="sql-box"></pre></dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section id="view-scorecard" class="view hidden">
+      <div class="page-intro">
+        <div>
+          <h1>Scorecard &amp; Governance</h1>
+          <p class="subtitle">
+            Measured accuracy against an independent pandas ground truth and a plain-LLM baseline, prompt-injection outcomes, governed metric definitions, and data contract quarantine counts.
+          </p>
+        </div>
+      </div>
+
+      <div id="scorecard-loading" class="card state-card hidden">
+        <div class="spinner-sm" aria-hidden="true"></div>
+        <span>Loading evaluation results and data contract report...</span>
+      </div>
+
+      <div id="scorecard-error" class="card error-card hidden" role="alert"></div>
+
+      <div id="scorecard-content" class="stack hidden">
+        <div id="eval-headlines" class="kpi-row"></div>
+
+        <article class="card">
+          <h2 class="card-title">Accuracy benchmark (95% Wilson confidence intervals)</h2>
+          <p class="card-note">40 questions split into 20 dev (used while building) and 20 held-out test questions: 28 answerable, 8 refusals/clarifications, and 4 prompt injections. Ground truth is computed independently in plain pandas.</p>
+          <div class="table-scroll">
+            <table id="eval-table" class="data-table"></table>
+          </div>
+        </article>
+
+        <article id="failures-card" class="card">
+          <h2 class="card-title">Recorded evaluation failures</h2>
+          <div id="failures-body"></div>
+        </article>
+
+        <article class="card">
+          <h2 class="card-title">Prompt-injection &amp; boundary tests</h2>
+          <div class="table-scroll">
+            <table id="injection-table" class="data-table"></table>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2 class="card-title">Data contract &amp; quarantine summary</h2>
+          <p id="quality-summary-line" class="card-note"></p>
+          <div class="table-scroll">
+            <table id="quarantine-table" class="data-table"></table>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2 class="card-title">Category normalisation &amp; consistency check</h2>
+          <p id="category-summary-line" class="card-note"></p>
+          <div class="table-scroll">
+            <table id="category-table" class="data-table"></table>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2 class="card-title">Semantic metric dictionary (pipeline/metrics.yml)</h2>
+          <div class="table-scroll">
+            <table id="metrics-table" class="data-table"></table>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>Showwork · Semantic-layer copilot over UCI Online Retail II (CC BY 4.0)</span>
+      <span id="footer-asof" class="num"></span>
+    </div>
+  </footer>
+</body>
+</html>
