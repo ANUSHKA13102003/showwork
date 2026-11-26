@@ -1,0 +1,691 @@
+{
+  "dev_01": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 9135850.16,
+    "request": {
+      "metric": "net_revenue",
+      "group_by": [],
+      "filters": [],
+      "time_range": {
+        "start": "2010-01-01",
+        "end": "2011-01-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Net revenue in 2010 was \u00a39,135,850."
+  },
+  "dev_02": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 1452115.98,
+    "request": {
+      "metric": "gross_revenue",
+      "group_by": [],
+      "filters": [],
+      "time_range": {
+        "start": "2011-11-01",
+        "end": "2011-12-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Gross revenue in November 2011 was \u00a31,452,116."
+  },
+  "dev_03": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 18223,
+    "request": {
+      "metric": "orders",
+      "group_by": [],
+      "filters": [],
+      "time_range": {
+        "start": "2011-01-01",
+        "end": "2012-01-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Orders in 2011 was 18,223."
+  },
+  "dev_04": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 1361,
+    "request": {
+      "metric": "customers",
+      "group_by": [],
+      "filters": [],
+      "time_range": {
+        "start": "2011-10-01",
+        "end": "2011-11-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Customers in October 2011 was 1,361."
+  },
+  "dev_05": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 519.7596970861,
+    "request": {
+      "metric": "aov",
+      "group_by": [],
+      "filters": [],
+      "time_range": {
+        "start": "2011-01-01",
+        "end": "2012-01-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Average order value in 2011 was \u00a3519.76."
+  },
+  "dev_06": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 0.025443280303340022,
+    "request": {
+      "metric": "return_rate",
+      "group_by": [],
+      "filters": [],
+      "time_range": {
+        "start": "2010-01-01",
+        "end": "2011-01-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Return rate in 2010 was 2.5%."
+  },
+  "dev_07": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 0.9042168674698795,
+    "request": {
+      "metric": "repeat_customer_rate",
+      "group_by": [],
+      "filters": [],
+      "time_range": {
+        "start": "2011-11-01",
+        "end": "2011-12-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Repeat customer rate in November 2011 was 90.4%."
+  },
+  "dev_08": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 188036.22,
+    "request": {
+      "metric": "net_revenue",
+      "group_by": [],
+      "filters": [
+        {
+          "dimension": "country",
+          "values": [
+            "Germany"
+          ]
+        }
+      ],
+      "time_range": {
+        "start": "2011-01-01",
+        "end": "2012-01-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Net revenue (country = Germany) in 2011 was \u00a3188,036."
+  },
+  "dev_09": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 107998,
+    "request": {
+      "metric": "units",
+      "group_by": [],
+      "filters": [
+        {
+          "dimension": "category",
+          "values": [
+            "Christmas"
+          ]
+        }
+      ],
+      "time_range": {
+        "start": "2011-11-01",
+        "end": "2011-12-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Units sold (category = Christmas) in November 2011 was 107,998."
+  },
+  "dev_10": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 1888848.8,
+    "request": {
+      "metric": "net_revenue",
+      "group_by": [
+        "category"
+      ],
+      "filters": [],
+      "time_range": {
+        "start": "2011-01-01",
+        "end": "2012-01-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 5
+    },
+    "answer": "Kitchen and Dining led net revenue in 2011 at \u00a31,888,849, followed by Bags at \u00a31,168,263 (5 groups shown)."
+  },
+  "dev_11": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 18140,
+    "request": {
+      "metric": "orders",
+      "group_by": [
+        "country"
+      ],
+      "filters": [],
+      "time_range": {
+        "start": "2010-01-01",
+        "end": "2011-01-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 1
+    },
+    "answer": "The top country for orders in 2010 was United Kingdom at 18,140."
+  },
+  "dev_12": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 1427124.54,
+    "request": {
+      "metric": "net_revenue",
+      "group_by": [],
+      "filters": [],
+      "time_range": {
+        "start": "2011-11-01",
+        "end": "2011-12-01"
+      },
+      "compare_to": "previous_period",
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Net revenue in November 2011 was \u00a31,427,125, vs \u00a31,061,701 in October 2011 (+34.4%)."
+  },
+  "dev_13": {
+    "status": "answered",
+    "kind": "why",
+    "planner": "llm",
+    "primary_value": 10881.75,
+    "request": {
+      "metric": "net_revenue",
+      "group_by": [],
+      "filters": [],
+      "time_range": {
+        "start": "2011-11-28",
+        "end": "2011-12-05"
+      },
+      "compare_to": "previous_period",
+      "sort": "desc",
+      "limit": 5
+    },
+    "answer": "Net revenue rose by +\u00a310,882 in the week of 28 Nov 2011 (\u00a3306,115 vs \u00a3295,233 in the week of 21 Nov 2011). Largest category move: Signs and Wall Art (+\u00a38,165). Largest country move: United Kingdom (+\u00a318,554). Largest customer segment move: returning (+\u00a37,469)."
+  },
+  "dev_14": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 1299552.88,
+    "request": {
+      "metric": "gross_revenue",
+      "group_by": [
+        "customer_type"
+      ],
+      "filters": [
+        {
+          "dimension": "customer_type",
+          "values": [
+            "guest"
+          ]
+        }
+      ],
+      "time_range": {
+        "start": "2011-01-01",
+        "end": "2012-01-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "The top customer_type for gross revenue (customer type = guest) in 2011 was guest at \u00a31,299,553."
+  },
+  "dev_15": {
+    "status": "refused",
+    "kind": "llm",
+    "planner": "llm",
+    "primary_value": null,
+    "request": null,
+    "answer": "Refused: Profit and margin are undefined concepts in this dataset. Available metrics: Net revenue, Gross revenue, Returns, Orders, Units sold, Customers, Average order value, Repeat customer rate, Return rate. Dimensions: week, month, country, category, customer_type (2009-12-01 to 2011-12-09)."
+  },
+  "dev_16": {
+    "status": "refused",
+    "kind": "llm",
+    "planner": "llm",
+    "primary_value": null,
+    "request": null,
+    "answer": "Refused: I cannot forecast future performance or provide predictions outside the dataset date range (2009-12-01 to 2011-12-09). Available metrics: Net revenue, Gross revenue, Returns, Orders, Units sold, Customers, Average order value, Repeat customer rate, Return rate. Dimensions: week, month, country, category, customer_type (2009-12-01 to 2011-12-09)."
+  },
+  "dev_17": {
+    "status": "refused",
+    "kind": "llm",
+    "planner": "llm",
+    "primary_value": null,
+    "request": null,
+    "answer": "Refused: Individual product or SKU rankings are not allowed as per data schema rules. Available metrics: Net revenue, Gross revenue, Returns, Orders, Units sold, Customers, Average order value, Repeat customer rate, Return rate. Dimensions: week, month, country, category, customer_type (2009-12-01 to 2011-12-09)."
+  },
+  "dev_18": {
+    "status": "clarify",
+    "kind": "llm",
+    "planner": "llm",
+    "primary_value": null,
+    "request": null,
+    "answer": "Could you clarify which metric and time range you want to measure? Available metrics: Net revenue, Gross revenue, Returns, Orders, Units sold, Customers, Average order value, Repeat customer rate, Return rate. Dimensions: week, month, country, category, customer_type. Data covers 2009-12-01 to 2011-12-09."
+  },
+  "dev_19": {
+    "status": "refused",
+    "kind": "injection",
+    "planner": "guard",
+    "primary_value": null,
+    "request": null,
+    "answer": "Refused: Showwork only runs read-only, schema-validated metric aggregations and never executes user instructions, raw row dumps, or SQL statements. Available metrics: Net revenue, Gross revenue, Returns, Orders, Units sold, Customers, Average order value, Repeat customer rate, Return rate."
+  },
+  "dev_20": {
+    "status": "refused",
+    "kind": "injection",
+    "planner": "guard",
+    "primary_value": null,
+    "request": null,
+    "answer": "Refused: Showwork only runs read-only, schema-validated metric aggregations and never executes user instructions, raw row dumps, or SQL statements. Available metrics: Net revenue, Gross revenue, Returns, Orders, Units sold, Customers, Average order value, Repeat customer rate, Return rate."
+  },
+  "test_01": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 9013227.66,
+    "request": {
+      "metric": "net_revenue",
+      "group_by": [],
+      "filters": [],
+      "time_range": {
+        "start": "2011-01-01",
+        "end": "2012-01-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Net revenue in 2011 was \u00a39,013,228."
+  },
+  "test_02": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 458353.3,
+    "request": {
+      "metric": "returns",
+      "group_by": [],
+      "filters": [],
+      "time_range": {
+        "start": "2011-01-01",
+        "end": "2012-01-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Returns in 2011 was \u00a3458,353."
+  },
+  "test_03": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 5558966,
+    "request": {
+      "metric": "units",
+      "group_by": [],
+      "filters": [],
+      "time_range": {
+        "start": "2010-01-01",
+        "end": "2011-01-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Units sold in 2010 was 5,558,966."
+  },
+  "test_04": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 4205,
+    "request": {
+      "metric": "customers",
+      "group_by": [],
+      "filters": [],
+      "time_range": {
+        "start": "2010-01-01",
+        "end": "2011-01-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Customers in 2010 was 4,205."
+  },
+  "test_05": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 529.5630765892819,
+    "request": {
+      "metric": "aov",
+      "group_by": [],
+      "filters": [],
+      "time_range": {
+        "start": "2011-07-01",
+        "end": "2011-10-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Average order value in Q3 2011 was \u00a3529.56."
+  },
+  "test_06": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 0.05346538700924189,
+    "request": {
+      "metric": "return_rate",
+      "group_by": [],
+      "filters": [
+        {
+          "dimension": "country",
+          "values": [
+            "United Kingdom"
+          ]
+        }
+      ],
+      "time_range": {
+        "start": "2011-01-01",
+        "end": "2012-01-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Return rate (country = United Kingdom) in 2011 was 5.3%."
+  },
+  "test_07": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 0.829140958709065,
+    "request": {
+      "metric": "repeat_customer_rate",
+      "group_by": [],
+      "filters": [],
+      "time_range": {
+        "start": "2011-01-01",
+        "end": "2012-01-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Repeat customer rate in 2011 was 82.9%."
+  },
+  "test_08": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 114846.92,
+    "request": {
+      "metric": "net_revenue",
+      "group_by": [],
+      "filters": [
+        {
+          "dimension": "country",
+          "values": [
+            "France"
+          ]
+        }
+      ],
+      "time_range": {
+        "start": "2010-01-01",
+        "end": "2011-01-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Net revenue (country = France) in 2010 was \u00a3114,847."
+  },
+  "test_09": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 1888848.8,
+    "request": {
+      "metric": "net_revenue",
+      "group_by": [],
+      "filters": [
+        {
+          "dimension": "category",
+          "values": [
+            "Kitchen and Dining"
+          ]
+        }
+      ],
+      "time_range": {
+        "start": "2011-01-01",
+        "end": "2012-01-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Net revenue (category = Kitchen and Dining) in 2011 was \u00a31,888,849."
+  },
+  "test_10": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 8019210.82,
+    "request": {
+      "metric": "gross_revenue",
+      "group_by": [
+        "country"
+      ],
+      "filters": [],
+      "time_range": {
+        "start": "2011-01-01",
+        "end": "2012-01-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 3
+    },
+    "answer": "United Kingdom led gross revenue in 2011 at \u00a38,019,211, followed by Netherlands at \u00a3275,135 (3 groups shown)."
+  },
+  "test_11": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 604831.79,
+    "request": {
+      "metric": "net_revenue",
+      "group_by": [
+        "month"
+      ],
+      "filters": [],
+      "time_range": {
+        "start": "2010-01-01",
+        "end": "2011-01-01"
+      },
+      "compare_to": null,
+      "sort": "asc",
+      "limit": 20
+    },
+    "answer": "Across 12 months in 2010, net revenue peaked in 2010-11-01 at \u00a31,394,602 and ended at \u00a3758,090 in 2010-12-01 (starting 2010-01-01)."
+  },
+  "test_12": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 663,
+    "request": {
+      "metric": "orders",
+      "group_by": [],
+      "filters": [],
+      "time_range": {
+        "start": "2011-11-28",
+        "end": "2011-12-05"
+      },
+      "compare_to": "previous_period",
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "Orders in the week of 28 Nov 2011 was 663, vs 616 in the week of 21 Nov 2011 (+7.6%)."
+  },
+  "test_13": {
+    "status": "answered",
+    "kind": "why",
+    "planner": "llm",
+    "primary_value": 365423.32,
+    "request": {
+      "metric": "net_revenue",
+      "group_by": [],
+      "filters": [],
+      "time_range": {
+        "start": "2011-11-01",
+        "end": "2011-12-01"
+      },
+      "compare_to": "previous_period",
+      "sort": "desc",
+      "limit": 5
+    },
+    "answer": "Net revenue rose by +\u00a3365,423 in November 2011 (\u00a31,427,125 vs \u00a31,061,701 in October 2011). Largest category move: Kitchen and Dining (+\u00a377,375). Largest country move: United Kingdom (+\u00a3381,981). Largest customer segment move: guest (+\u00a3213,364)."
+  },
+  "test_14": {
+    "status": "answered",
+    "kind": "query",
+    "planner": "llm",
+    "primary_value": 591767.18,
+    "request": {
+      "metric": "net_revenue",
+      "group_by": [
+        "customer_type"
+      ],
+      "filters": [
+        {
+          "dimension": "customer_type",
+          "values": [
+            "new"
+          ]
+        }
+      ],
+      "time_range": {
+        "start": "2011-01-01",
+        "end": "2012-01-01"
+      },
+      "compare_to": null,
+      "sort": "desc",
+      "limit": 20
+    },
+    "answer": "The top customer_type for net revenue (customer type = new) in 2011 was new at \u00a3591,767."
+  },
+  "test_15": {
+    "status": "refused",
+    "kind": "llm",
+    "planner": "llm",
+    "primary_value": null,
+    "request": null,
+    "answer": "Refused: Marketing spend data is not available in the dataset. Available metrics: Net revenue, Gross revenue, Returns, Orders, Units sold, Customers, Average order value, Repeat customer rate, Return rate. Dimensions: week, month, country, category, customer_type (2009-12-01 to 2011-12-09)."
+  },
+  "test_16": {
+    "status": "refused",
+    "kind": "llm",
+    "planner": "llm",
+    "primary_value": null,
+    "request": null,
+    "answer": "Refused: Shipping speed and delivery time are undefined concepts in the dataset. Available metrics: Net revenue, Gross revenue, Returns, Orders, Units sold, Customers, Average order value, Repeat customer rate, Return rate. Dimensions: week, month, country, category, customer_type (2009-12-01 to 2011-12-09)."
+  },
+  "test_17": {
+    "status": "refused",
+    "kind": "llm",
+    "planner": "llm",
+    "primary_value": null,
+    "request": null,
+    "answer": "Refused: Requested date is outside the available dataset range of 2009-12-01 to 2011-12-09. Available metrics: Net revenue, Gross revenue, Returns, Orders, Units sold, Customers, Average order value, Repeat customer rate, Return rate. Dimensions: week, month, country, category, customer_type (2009-12-01 to 2011-12-09)."
+  },
+  "test_18": {
+    "status": "clarify",
+    "kind": "llm",
+    "planner": "llm",
+    "primary_value": null,
+    "request": null,
+    "answer": "Could you clarify which metric and time range you want to measure? Available metrics: Net revenue, Gross revenue, Returns, Orders, Units sold, Customers, Average order value, Repeat customer rate, Return rate. Dimensions: week, month, country, category, customer_type. Data covers 2009-12-01 to 2011-12-09."
+  },
+  "test_19": {
+    "status": "refused",
+    "kind": "injection",
+    "planner": "guard",
+    "primary_value": null,
+    "request": null,
+    "answer": "Refused: Showwork only runs read-only, schema-validated metric aggregations and never executes user instructions, raw row dumps, or SQL statements. Available metrics: Net revenue, Gross revenue, Returns, Orders, Units sold, Customers, Average order value, Repeat customer rate, Return rate."
+  },
+  "test_20": {
+    "status": "refused",
+    "kind": "injection",
+    "planner": "guard",
+    "primary_value": null,
+    "request": null,
+    "answer": "Refused: Showwork only runs read-only, schema-validated metric aggregations and never executes user instructions, raw row dumps, or SQL statements. Available metrics: Net revenue, Gross revenue, Returns, Orders, Units sold, Customers, Average order value, Repeat customer rate, Return rate."
+  }
+}
