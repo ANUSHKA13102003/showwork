@@ -21,11 +21,12 @@
   <header class="topbar">
     <div class="container topbar-inner">
       <div class="brand-wrap">
-        <a href="/ask" class="brand" data-nav="ask">Showwork</a>
+        <a href="/briefing" class="brand" data-nav="briefing">Showwork</a>
         <span class="tagline">Ask your data anything. It shows its work.</span>
       </div>
       <nav class="nav" aria-label="Primary">
-        <a href="/ask" class="nav-link active" data-nav="ask">Ask</a>
+        <a href="/briefing" class="nav-link active" data-nav="briefing">Briefing</a>
+        <a href="/ask" class="nav-link" data-nav="ask">Ask</a>
         <a href="/scorecard" class="nav-link" data-nav="scorecard">Scorecard</a>
       </nav>
       <div class="mode-wrap">
@@ -46,7 +47,68 @@
       <p class="muted" id="wakeup-elapsed">Elapsed: 0s</p>
     </section>
 
-    <section id="view-ask" class="view">
+    <section id="view-briefing" class="view">
+      <div class="page-intro intro-split">
+        <div>
+          <h1>Weekly Briefing</h1>
+          <p class="subtitle">
+            Historical weekly replay over UCI Online Retail II (GBP). Every summary figure is checked against computed JSON facts; click any KPI, driver, or watchlist item to inspect its work.
+          </p>
+        </div>
+        <div class="week-picker-wrap">
+          <label for="briefing-week" class="picker-label">Week starting (Mon)</label>
+          <select id="briefing-week" class="week-select"></select>
+        </div>
+      </div>
+
+      <div id="briefing-loading" class="card state-card hidden" aria-live="polite">
+        <div class="spinner-sm" aria-hidden="true"></div>
+        <span>Loading verified weekly briefing...</span>
+      </div>
+
+      <div id="briefing-error" class="card error-card hidden" role="alert"></div>
+
+      <div id="briefing-content" class="stack hidden">
+        <div id="briefing-seasonal" class="seasonal-banner hidden"></div>
+
+        <article class="card">
+          <div class="answer-header">
+            <span id="briefing-badge" class="badge">Verified summary</span>
+            <span id="briefing-meta" class="muted-sm"></span>
+          </div>
+          <p id="briefing-summary" class="answer-sentence"></p>
+        </article>
+
+        <div>
+          <div class="section-head">
+            <h2 class="section-title">Key performance indicators</h2>
+            <span class="muted-sm">Click any KPI card to open Show work</span>
+          </div>
+          <div id="briefing-kpis" class="kpi-grid-6"></div>
+        </div>
+
+        <article class="card">
+          <h2 id="briefing-chart-title" class="card-title">Net revenue drivers</h2>
+          <div class="chart-wrap">
+            <canvas id="briefing-chart"></canvas>
+          </div>
+          <div id="briefing-drivers" class="driver-cols"></div>
+        </article>
+
+        <div class="two-col-cards">
+          <article class="card">
+            <h2 class="card-title">Anomaly flags (prior 8-week median &amp; MAD)</h2>
+            <div id="briefing-anomalies"></div>
+          </article>
+          <article class="card">
+            <h2 class="card-title">Deterministic watchlist</h2>
+            <div id="briefing-watchlist"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-ask" class="view hidden">
       <div class="page-intro">
         <div>
           <h1>Ask governed metrics</h1>
@@ -232,6 +294,59 @@
       </div>
     </section>
   </main>
+
+  <div id="drawer-backdrop" class="drawer-backdrop hidden"></div>
+  <aside id="work-drawer" class="work-drawer hidden" aria-label="Show work drawer">
+    <div class="work-header">
+      <div>
+        <span class="eyebrow">Show work</span>
+        <h2 id="dw-metric" class="work-title">Metric</h2>
+      </div>
+      <div class="drawer-actions">
+        <span id="dw-version" class="badge-outline">v1</span>
+        <button type="button" id="drawer-close" class="btn-ghost">Close</button>
+      </div>
+    </div>
+    <div id="dw-selected-val" class="work-selected hidden"></div>
+    <dl class="work-dl">
+      <div>
+        <dt>Definition</dt>
+        <dd id="dw-definition"></dd>
+      </div>
+      <div class="work-two-col">
+        <div>
+          <dt>Grain</dt>
+          <dd id="dw-grain"></dd>
+        </div>
+        <div>
+          <dt>Owner</dt>
+          <dd id="dw-owner"></dd>
+        </div>
+      </div>
+      <div class="work-two-col">
+        <div>
+          <dt>Rows scanned</dt>
+          <dd id="dw-scanned" class="num"></dd>
+        </div>
+        <div>
+          <dt>Data as of</dt>
+          <dd id="dw-asof" class="num"></dd>
+        </div>
+      </div>
+      <div>
+        <dt>Active filters</dt>
+        <dd id="dw-filters"></dd>
+      </div>
+      <div>
+        <dt>Caveats</dt>
+        <dd id="dw-caveats" class="muted"></dd>
+      </div>
+      <div>
+        <dt>Exact executed SQL (read-only DuckDB)</dt>
+        <dd><pre id="dw-sql" class="sql-box"></pre></dd>
+      </div>
+    </dl>
+  </aside>
 
   <footer class="footer">
     <div class="container footer-inner">
