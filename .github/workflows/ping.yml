@@ -1,0 +1,16 @@
+name: Keepalive Ping
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Request health endpoint
+        env:
+          LIVE_URL: ${{ vars.LIVE_URL || 'https://showwork.onrender.com' }}
+        run: |
+          curl -fsS --max-time 60 "${LIVE_URL%/}/health" || true
