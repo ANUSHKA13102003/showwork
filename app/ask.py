@@ -31,11 +31,22 @@ PLAN_SCHEMA = {
         },
         "start_date": {"type": "STRING"},
         "end_date": {"type": "STRING"},
-        "compare_to": {"type": "STRING"},
-        "sort": {"type": "STRING"},
+        "compare_to": {"type": "STRING", "enum": ["none", "previous_period", "previous_year"]},
+        "sort": {"type": "STRING", "enum": ["desc", "asc"]},
         "limit": {"type": "INTEGER"},
     },
-    "required": ["action"],
+    "required": [
+        "action",
+        "reason",
+        "metric",
+        "group_by",
+        "filters",
+        "start_date",
+        "end_date",
+        "compare_to",
+        "sort",
+        "limit",
+    ],
 }
 
 
@@ -78,7 +89,7 @@ def _system_prompt():
         "4. For 'which <dim> had the highest/most ...' set limit=1 and sort='desc'. For 'lowest/least' set sort='asc' and limit=1. "
         "For 'top N' set limit=N and sort='desc'. Otherwise limit=20.\n"
         "5. Set compare_to='previous_period' for period-over-period / WoW / MoM comparisons, "
-        "'previous_year' for YoY / same period last year, or empty otherwise."
+        "'previous_year' for YoY / same period last year, or 'none' otherwise."
     )
 
 

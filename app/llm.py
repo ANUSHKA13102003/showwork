@@ -85,7 +85,7 @@ def generate(prompt, system=None, schema=None, temperature=0.0, metered=True, re
     url = API.format(model=MODEL)
     for attempt in range(retries):
         try:
-            res = httpx.post(url, headers=headers, json=body, timeout=60)
+            res = httpx.post(url, headers=headers, json=body, timeout=25)
         except httpx.HTTPError as exc:
             log.warning("llm request failed: %s", type(exc).__name__)
             time.sleep(2 * (attempt + 1))
@@ -95,7 +95,7 @@ def generate(prompt, system=None, schema=None, temperature=0.0, metered=True, re
         # status only; the response body can echo request details
         log.warning("llm status %s", res.status_code)
         if res.status_code in (429, 500, 503):
-            time.sleep(5 * (attempt + 1))
+            time.sleep(4 * (attempt + 1))
             continue
         return None
     return None
