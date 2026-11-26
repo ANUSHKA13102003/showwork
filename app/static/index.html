@@ -27,6 +27,7 @@
       <nav class="nav" aria-label="Primary">
         <a href="/briefing" class="nav-link active" data-nav="briefing">Briefing</a>
         <a href="/ask" class="nav-link" data-nav="ask">Ask</a>
+        <a href="/clean" class="nav-link" data-nav="clean">Clean</a>
         <a href="/scorecard" class="nav-link" data-nav="scorecard">Scorecard</a>
       </nav>
       <div class="mode-wrap">
@@ -226,6 +227,59 @@
             </div>
           </dl>
         </aside>
+      </div>
+    </section>
+
+    <section id="view-clean" class="view hidden">
+      <div class="page-intro intro-split">
+        <div>
+          <h1>Clean (Data Doctor)</h1>
+          <p class="subtitle">
+            Upload a CSV (max 5 MB, processed strictly in memory and never stored). Deterministic code detects missing values, duplicates, mixed types, inconsistent casing/typos, impossible values, and outliers.
+          </p>
+        </div>
+        <button type="button" id="clean-sample-btn" class="btn-ghost">Sample messy file (real retail rows)</button>
+      </div>
+
+      <div id="clean-dropzone" class="card dropzone">
+        <input id="clean-file-input" type="file" accept=".csv,text/csv" class="sr-only">
+        <p class="drop-title">Drop a <code>.csv</code> file here or <button type="button" id="clean-browse-btn" class="link-btn">choose a file</button></p>
+        <p class="muted-sm">Max 5 MB · Processed in memory · Spreadsheet formula injection (<code>= + - @</code>) neutralised on download</p>
+      </div>
+
+      <div id="clean-loading" class="card state-card hidden" aria-live="polite">
+        <div class="spinner-sm" aria-hidden="true"></div>
+        <span>Inspecting CSV columns and row-count impact...</span>
+      </div>
+
+      <div id="clean-error" class="card error-card hidden" role="alert"></div>
+
+      <div id="clean-workspace" class="stack hidden">
+        <div id="clean-kpis" class="kpi-row"></div>
+
+        <article class="card">
+          <div class="card-head-row">
+            <h2 class="card-title">Detected issues &amp; proposed fixes</h2>
+            <div class="clean-actions">
+              <button type="button" id="clean-download-csv" class="btn-primary">Download cleaned CSV</button>
+              <button type="button" id="clean-download-log" class="btn-ghost">Download change log</button>
+            </div>
+          </div>
+          <p class="card-note">Accept or reject each rule below to preview the exact effect on remaining rows and modified cells before downloading.</p>
+          <div id="clean-issues-list" class="issue-list"></div>
+        </article>
+
+        <article class="card">
+          <h2 class="card-title">Preview after accepted fixes (first 10 rows)</h2>
+          <div class="table-scroll">
+            <table id="clean-preview-table" class="data-table"></table>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2 class="card-title">Change log preview</h2>
+          <pre id="clean-changelog-box" class="sql-box"></pre>
+        </article>
       </div>
     </section>
 

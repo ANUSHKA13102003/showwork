@@ -899,8 +899,184 @@
     `;
   }
 
+  /* --- CLEAN (DATA DOCTOR) VIEW --- */
+  let cleanCurrentFile = null;
+  let cleanAcceptedIds = new Set();
+
+  function triggerDownload(filename, content, mime) {
+    const blob = new Blob([content], { type: mime });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  async function inspectCleanFile(file) {
+    const loading = el("clean-loading");
+    const errBox = el("clean-error");
+    const ws = el("clean-workspace");
+    errBox.classList.add("hidden");
+    loading.classList.remove("hidden");
+
+    if (!file.name.toLowerCase().endsWith(".csv")) {
+      loading.classList.add("hidden");
+      errBox.textContent = "Only .csv files are accepted.";
+      errBox.classList.remove("hidden");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      loading.classList.add("hidden");
+      errBox.textContent = "CSV exceeds the 5 MB upload limit.";
+      errBox.classList.remove("hidden");
+      return;
+    }
+
+    cleanCurrentFile = file;
+    const fd = new FormData();
+    fd.append("file", file);
+
+    try {
+      const res = await fetch("/api/clean/inspect", { method: "POST", body: fd });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || `Inspect failed (${res.status})`);
+      cleanAcceptedIds = new Set(
+        (data.issues || []).filter((i) => i.default_accepted).map((i) => i.id)
+      );
+      renderCleanIssues(data.filename, data.issues || []);
+      renderCleanPreview(data.preview);
+      ws.classList.remove("hidden");
+    } catch (err) {
+      errBox.textContent = err.message || "Could not inspect CSV.";
+      errBox.classList.remove("hidden");
+    } finally {
+      loading.classList.add("hidden");
+    }
+  }
+
+  function renderCleanIssues(filename, issues) {
+    const box = el("clean-issues-list");
+    box.innerHTML = "";
+    if (!issues.length) {
+      box.innerHTML = `<p class="muted">No deterministic issues detected in ${escapeHtml(filename)}.</p>`;
+      return;
+    }
+    issues.forEach((iss) => {
+      const label = document.createElement("label");
+      label.className = "issue-card";
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.checked = cleanAcceptedIds.has(iss.id);
+      cb.addEventListener("change", () => {
+        if (cb.checked) cleanAcceptedIds.add(iss.id);
+        else cleanAcceptedIds.delete(iss.id);
+        refreshCleanPreview();
+      });
+
+      const body = document.createElement("div");
+      body.className = "issue-body";
+      const exTxt =
+        iss.examples && iss.examples.length
+          ? `<div class="issue-examples">Sample: ${escapeHtml(
+              iss.examples.map((x) => (typeof x === "string" ? x : JSON.stringify(x))).join(" | ")
+            )}</div>`
+          : "";
+      body.innerHTML = `
+        <div class="issue-head">
+          <span class="code-inline">${escapeHtml(iss.kind)}</span>
+          <span class="issue-title">${escapeHtml(iss.title)}</span>
+        </div>
+        <div class="issue-fix">Proposed fix: ${escapeHtml(iss.proposed_fix)}</div>
+        ${exTxt}
+      `;
+      label.append(cb, body);
+      box.appendChild(label);
+    });
+  }
+
+  function renderCleanPreview(prev) {
+    if (!prev) return;
+    const kpiBox = el("clean-kpis");
+    kpiBox.innerHTML = "";
+    [
+      { label: "Input rows", val: fmtInt(prev.input_rows), sub: `${(prev.columns || []).length} columns` },
+      { label: "Rows after accepted fixes", val: fmtInt(prev.output_rows), sub: `${fmtInt(prev.rows_removed)} rows removed` },
+      { label: "Cells normalised / imputed", val: fmtInt(prev.cells_modified), sub: `${cleanAcceptedIds.size} fix rules active` },
+    ].forEach((c) => {
+      const div = document.createElement("div");
+      div.className = "kpi-card";
+      div.innerHTML = `<div class="kpi-label">${escapeHtml(c.label)}</div><div class="kpi-val">${escapeHtml(c.val)}</div><div class="kpi-sub">${escapeHtml(c.sub)}</div>`;
+      kpiBox.appendChild(div);
+    });
+
+    const tbl = el("clean-preview-table");
+    const cols = prev.columns || [];
+    const rows = prev.preview_after || [];
+    const ths = cols.map((c) => `<th>${escapeHtml(c)}</th>`).join("");
+    const trs = rows
+      .map(
+        (r) =>
+          `<tr>${cols.map((c) => `<td>${escapeHtml(r[c] ?? "")}</td>`).join("")}</tr>`
+      )
+      .join("");
+    tbl.innerHTML = `<thead><tr>${ths}</tr></thead><tbody>${trs}</tbody>`;
+    el("clean-changelog-box").textContent = prev.changelog || "";
+  }
+
+  async function refreshCleanPreview() {
+    if (!cleanCurrentFile) return;
+    const fd = new FormData();
+    fd.append("file", cleanCurrentFile);
+    fd.append("accepted_ids", JSON.stringify(Array.from(cleanAcceptedIds)));
+    fd.append("preview_only", "1");
+    const res = await fetch("/api/clean/apply", { method: "POST", body: fd });
+    if (res.ok) {
+      renderCleanPreview(await res.json());
+    }
+  }
+
+  async function runCleanDownload(kind) {
+    if (!cleanCurrentFile) return;
+    const fd = new FormData();
+    fd.append("file", cleanCurrentFile);
+    fd.append("accepted_ids", JSON.stringify(Array.from(cleanAcceptedIds)));
+    fd.append("preview_only", "0");
+    const res = await fetch("/api/clean/apply", { method: "POST", body: fd });
+    const data = await res.json();
+    if (!res.ok) {
+      el("clean-error").textContent = data.detail || "Export failed.";
+      el("clean-error").classList.remove("hidden");
+      return;
+    }
+    renderCleanPreview(data);
+    const stem = cleanCurrentFile.name.replace(/\.csv$/i, "");
+    if (kind === "csv") {
+      triggerDownload(`${stem}_cleaned.csv`, data.cleaned_csv, "text/csv;charset=utf-8");
+    } else {
+      triggerDownload(`${stem}_changelog.txt`, data.changelog, "text/plain;charset=utf-8");
+    }
+  }
+
+  async function loadSampleMessyCsv() {
+    const errBox = el("clean-error");
+    errBox.classList.add("hidden");
+    try {
+      const res = await fetch("/api/clean/sample", { headers: { Accept: "application/json" } });
+      if (!res.ok) throw new Error("Could not fetch sample CSV.");
+      const data = await res.json();
+      const file = new File([data.csv], data.filename || "sample_messy.csv", { type: "text/csv" });
+      await inspectCleanFile(file);
+    } catch (err) {
+      errBox.textContent = err.message || "Could not load sample file.";
+      errBox.classList.remove("hidden");
+    }
+  }
+
   function showView(viewName, push) {
-    const valid = ["briefing", "ask", "scorecard"];
+    const valid = ["briefing", "ask", "clean", "scorecard"];
     const target = valid.includes(viewName) ? viewName : "briefing";
     valid.forEach((v) => {
       el("view-" + v).classList.toggle("hidden", v !== target);
@@ -918,6 +1094,7 @@
   function routeFromLocation() {
     const p = window.location.pathname.replace(/\/+$/, "");
     if (p === "/ask") return "ask";
+    if (p === "/clean") return "clean";
     if (p === "/scorecard") return "scorecard";
     return "briefing";
   }
@@ -935,6 +1112,28 @@
     el("briefing-week").addEventListener("change", (e) => {
       if (e.target.value) loadBriefingWeek(e.target.value);
     });
+
+    const dz = el("clean-dropzone");
+    const fInput = el("clean-file-input");
+    el("clean-browse-btn").addEventListener("click", () => fInput.click());
+    fInput.addEventListener("change", () => {
+      if (fInput.files && fInput.files[0]) inspectCleanFile(fInput.files[0]);
+    });
+    dz.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      dz.classList.add("dragover");
+    });
+    dz.addEventListener("dragleave", () => dz.classList.remove("dragover"));
+    dz.addEventListener("drop", (e) => {
+      e.preventDefault();
+      dz.classList.remove("dragover");
+      if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) {
+        inspectCleanFile(e.dataTransfer.files[0]);
+      }
+    });
+    el("clean-sample-btn").addEventListener("click", loadSampleMessyCsv);
+    el("clean-download-csv").addEventListener("click", () => runCleanDownload("csv"));
+    el("clean-download-log").addEventListener("click", () => runCleanDownload("log"));
 
     el("drawer-close").addEventListener("click", closeDrawerWork);
     el("drawer-backdrop").addEventListener("click", closeDrawerWork);

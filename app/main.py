@@ -1,9 +1,12 @@
-from fastapi import Depends, FastAPI, HTTPException, Request
+import json
+from typing import Annotated
+
+from fastapi import Depends, FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from app import ask, briefing, db, llm, scorecard, security
+from app import ask, briefing, cleaner, db, llm, scorecard, security
 from app.config import STATIC
 
 app = FastAPI(title="Showwork", docs_url=None, redoc_url=None)
@@ -74,6 +77,42 @@ def api_briefing(week: str):
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
 
+@app.get("/api/clean/sample")
+def api_clean_sample():
+    return {"filename": "online_retail_messy_sample.csv", "csv": cleaner.build_sample_messy_csv()}
+
+
+@app.post("/api/clean/inspect", dependencies=[Depends(security.enforce_rate_limit)])
+async def api_clean_inspect(file: Annotated[UploadFile, File(...)]):
+    name, df = await cleaner.read_validated_csv(file)
+    issues = cleaner.detect_issues(df)
+    default_ids = {i["id"] for i in issues if i.get("default_accepted", True)}
+    preview = cleaner.apply_fixes(df, default_ids, preview_only=True)
+    return {
+        "filename": name,
+        "input_rows": len(df),
+        "input_columns": len(df.columns),
+        "columns": list(df.columns),
+        "issues": issues,
+        "preview_before": df.head(8).to_dict(orient="records"),
+        "preview": preview,
+    }
+
+
+@app.post("/api/clean/apply", dependencies=[Depends(security.enforce_rate_limit)])
+async def api_clean_apply(
+    file: Annotated[UploadFile, File(...)],
+    accepted_ids: Annotated[str, Form()] = "[]",
+    preview_only: Annotated[str, Form()] = "0",
+):
+    _, df = await cleaner.read_validated_csv(file)
+    try:
+        parsed_ids = set(json.loads(accepted_ids))
+    except (json.JSONDecodeError, TypeError) as exc:
+        raise HTTPException(status_code=400, detail="accepted_ids must be a JSON array.") from exc
+    return cleaner.apply_fixes(df, parsed_ids, preview_only=(preview_only == "1"))
+
+
 def _index():
     return FileResponse(STATIC / "index.html")
 
@@ -90,6 +129,11 @@ def briefing_page():
 
 @app.get("/ask")
 def ask_page():
+    return _index()
+
+
+@app.get("/clean")
+def clean_page():
     return _index()
 
 
